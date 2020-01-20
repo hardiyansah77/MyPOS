@@ -12,7 +12,7 @@ class Admin extends CI_Controller {
 		redirect('site');
 		}
 		$this->load->model('model');
-		//$this->load->model('m_cari');
+		$this->load->model('m_cari');
     }
 	
 	public function index()
