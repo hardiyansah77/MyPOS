@@ -12,14 +12,14 @@ class Admin extends CI_Controller {
 		redirect('site');
 		}
 		$this->load->model('model');
-		//$this->load->model('m_cari');
+		$this->load->model('m_cari');
     }
 	
 	public function index()
 		{
 			//echo '<pre>'; die(print_r($_SESSION));
 			$dtDormitory = $this->model->selectdata('tbl_dormitory order by id')->result_array();
-			$data = array(
+			$data = array(sfa
 			'dtDormitory'		=> $dtDormitory,
 				);
 			$this->load->view('superadmin/header');
