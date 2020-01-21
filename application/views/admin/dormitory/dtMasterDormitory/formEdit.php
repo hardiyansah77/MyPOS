@@ -27,41 +27,129 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal">
+			<?php foreach ($tbl_dormitory  as $data): ?>
+            <form action="<?php echo base_url('admin/upadteDormitory');?>" method="post" class="form-horizontal">
               <div class="box-body">
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+								<div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Floor</label>
 
                   <div class="col-sm-5">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    <select name="floor" class="form-control">
+					<option value="<?php echo $data->floor ?>"><?php echo $data->floor ?></option>
+                    <option value=""> -- Select floor -- </option>
+                    <option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+                  </select>
+                  </div>
+                </div>
+				<div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Type</label>
+
+                  <div class="col-sm-5">
+                    <select name="type" class="form-control">
+					<option value="<?php echo $data->type ?>"><?php echo $data->type ?></option>
+                    <option value=""> -- Select type -- </option>
+                    <option value="Suite">Suite</option>
+					<option value="Family">Family</option>
+					<option value="Deluxe A">Deluxe A</option>
+					<option value="Deluxe B">Deluxe B</option>
+					<option value="Superior A">Superior A</option>
+					<option value="Superior B">Superior B</option>
+					<option value="Superior C">Superior C</option>
+					<option value="Standard A">Standard A</option>
+					<option value="Standard B">Standard B</option>
+					<option value="Standard C">Standard C</option>
+                  </select>
+                  </div>
+                </div>
+				<div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Bed</label>
+
+                  <div class="col-sm-5">
+                  <div class="radio">
+				  <?php 
+					$bed1 = "";
+					$bed2 = "";
+					$bed3 = "";
+					$bed4 = "";
+						if($data->bed == "1"){
+							$bed1 = "checked";
+						} else if($data->bed == "2"){
+							$bed2 = "checked";
+						} else if($data->bed == "3"){
+							$bed3 = "checked";
+						} else if($data->bed == "4") {
+							$bed4 = "checked";
+						}
+					?>
+                    <label>
+                      <input type="radio" name="bed" <?= $bed1; ?> required id="optionsRadios1" value="1">
+                      1
+                    </label>
+					<label>
+                      <input type="radio" name="bed" <?= $bed2; ?> required id="optionsRadios1" value="2">
+                      2
+                    </label>
+					<label>
+                      <input type="radio" name="bed" <?= $bed3; ?> required id="optionsRadios1" value="3">
+                      3
+                    </label>
+					<label>
+                      <input type="radio" name="bed" <?= $bed4; ?> required id="optionsRadios1" value="4">
+                      4
+                    </label>
+                  </div>
+                  </div>
+                </div>
+				<div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Room Size</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" name="room_size" value="<?php echo $data->room_size ?>" class="form-control" id="inputEmail3" placeholder="Input room size ...">
+                    <input type="hidden" name="id" value="<?php echo $data->id ?>" class="form-control" id="inputEmail3" placeholder="Input room size ...">
+                  </div>
+                </div>
+				<div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Room Quantity</label>
+
+                  <div class="col-sm-5">
+                    <div class="row">
+					<div class="col-xs-6">
+					  <input type="text" name="qty_male" value="<?php echo $data->qty_male ?>" class="form-control" placeholder="Male ...">
+					</div>
+					<div class="col-xs-6">
+					  <input type="text" name="qty_female" value="<?php echo $data->qty_female ?>" class="form-control" placeholder="Female ...">
+					</div>
+				  </div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
+                  <label for="inputPassword3" class="col-sm-3 control-label">Facilities</label>
 
                   <div class="col-sm-5">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                    <textarea name="facilities" class="form-control" rows="3" placeholder="Input facilities ..."><?php echo $data->facilities ?></textarea>
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="col-sm-offset-3 col-sm-10">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> Remember me
-                      </label>
-                    </div>
+				<div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Price</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" name="price" value="<?php echo $data->price ?>" class="form-control" id="inputEmail3" placeholder="Input price ...">
                   </div>
                 </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-default">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="submit" class="btn btn-info">Sign in</button>
 			  </div>
               </div>
               <!-- /.box-footer -->
             </form>
+			<?php endforeach ?>
           </div>
           <!-- /.box -->
           <!-- general form elements disabled -->

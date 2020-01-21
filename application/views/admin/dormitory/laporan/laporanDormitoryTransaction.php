@@ -37,6 +37,7 @@
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
           </div>
         </div>
+		<form action="<?php echo base_url('admin/searchDormitoryTransaction');?>" method="post">
         <div class="box-body">
           <div class="row">
             <div class="col-md-2">
@@ -63,7 +64,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="reservation">
+                  <input type="text" class="form-control pull-right" name="reservation" id="reservation">
                 </div>
                 <!-- /.input group -->
               </div>
@@ -84,7 +85,7 @@
             </div>
             <!-- /.col -->
           </div><br>
-		  <center><button type="button" class="btn btn-block btn-primary">Search</button></center>
+		  <center><button type="submit" class="btn btn-block btn-primary">Search</button></center>
           <!-- /.row -->
         </div>
       </div>

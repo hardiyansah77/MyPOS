@@ -75,14 +75,14 @@
                   <td><?=$r['class'] ?></td>
                   <td><?=$r['type'] ?></td>
                   <td><?=$r['floor'] ?><?=$r['room_number'] ?></td>
-                  <td>Rp.<?= ($r['price']) ?></td>
+                  <td>Rp.<?= number_format($r['price']) ?></td>
                   <td>
 				  <center>
 					<div class="hidden-sm hidden-xs action-buttons">
-						<a class="green" href="<?=base_url();?>admin/formEditDormitoryTransaction">
+						<a class="green" href="<?=base_url();?>admin/formEditDormitoryTransaction/<?=$r['id_transaction'] ?>">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
-						<a class="red" href="<?=base_url();?>admin/deleteDormitoryTransaction/<?=$r['id_transaction'] ?>">
+						<a class="red" href="<?php echo base_url();?>admin/deleteDormitoryTransaction/<?=$r['id_transaction'] ?>">
 							<i class="ace-icon fa fa-trash-o bigger-130"></i>
 						</a>
 					</div></center>

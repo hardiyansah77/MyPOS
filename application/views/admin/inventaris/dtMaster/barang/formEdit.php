@@ -63,13 +63,13 @@
                     </div>
                 </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     <p class="col-sm-2 text-left">Keterangan </p>
 
                     <div class="col-sm-10">
                         <textarea name="keterangan"><?php echo $data->keterangan ?></textarea>
-                </div>
                     </div>
+                </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">

@@ -79,8 +79,14 @@ class Model extends CI_Model {
 	function selectdata1($where = '',$select = '*'){
 		return $this->db2->query("select $select from $where;");
 	}
+	function selectdata5($where = '',$select = '*'){
+		return $this->db->query("select $select from $where;");
+	}
 	function selectdata2($select = '*',$where = ''){
 		return $this->db2->query("select $select from $where;");
+	}
+	function selectdata3($select = '*',$where = ''){
+		return $this->db->query("select $select from $where;");
 	}
 	function selectcount($field = '',$where = ''){
 		$query = $this->db->query("select count($field) from $where;");

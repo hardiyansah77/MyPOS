@@ -79,10 +79,10 @@
                   <td>
 				  <center>
 					<div class="hidden-sm hidden-xs action-buttons">
-						<a class="green" href="<?=base_url();?>admin/formEditDormitory">
+						<a class="green" href="<?=base_url();?>admin/formEditDormitory/<?=$r['id'] ?>">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
-						<a class="red" href="#">
+						<a class="red" href="<?php echo base_url();?>admin/deleteDataDormitory/<?=$r['id'] ?>">
 							<i class="ace-icon fa fa-trash-o bigger-130"></i>
 						</a>
 					</div></center>

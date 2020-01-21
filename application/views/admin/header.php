@@ -379,28 +379,28 @@
         </li>
 		<li class="treeview">
           <a href="#">
-            <i class="fa fa-laptop"></i>
+            <i class="fa  fa-hand-lizard-o"></i>
             <span>Transaksi</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('admin/peminjaman');?>"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
-            <li><a href="<?php echo base_url('admin/pengembalian');?>"><i class="fa fa-circle-o"></i> pengembalian</a></li>
+            <li><a href="<?php echo base_url('admin/dtTransaksiPeminjaman');?>"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
+            <!--<li><a href="<?php echo base_url('admin/pengembalian');?>"><i class="fa fa-circle-o"></i> pengembalian</a></li>-->
           </ul>
         </li>
 		<li class="treeview">
           <a href="#">
-            <i class="fa fa-laptop"></i>
+            <i class="fa fa-pencil-square-o"></i>
             <span>Laporan</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('admin/peminjaman');?>"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
-            <li><a href="<?php echo base_url('admin/pengembalian');?>"><i class="fa fa-circle-o"></i> pengembalian</a></li>
+            <li><a href="<?php echo base_url('admin/laporanTransaksiInventaris');?>"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
+            <!--<li><a href="<?php echo base_url('admin/pengembalian');?>"><i class="fa fa-circle-o"></i> pengembalian</a></li>-->
           </ul>
         </li>
       </ul>
