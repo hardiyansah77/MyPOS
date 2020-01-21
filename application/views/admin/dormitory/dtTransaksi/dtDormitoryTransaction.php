@@ -82,7 +82,7 @@
 						<a class="green" href="<?=base_url();?>admin/formEditDormitoryTransaction">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
-						<a class="red" href="#">
+						<a class="red" href="<?=base_url();?>admin/deleteDormitoryTransaction/<?=$r['id_transaction'] ?>">
 							<i class="ace-icon fa fa-trash-o bigger-130"></i>
 						</a>
 					</div></center>
