@@ -69,5 +69,34 @@ class Ajax extends CI_Controller {
 			}	
 		echo json_encode($json);
 	}
+	
+	public function getDtNama()
+	{
+		$nama 		= $this->input->get('nama');
+		$getDtNama 	= $this->model->selectdata5('karyawan where nik = '.$nama,'nama')->result_array();
+		//print_r($getDtNama);exit;
+		$json 		=  [];
+		
+		foreach ($getDtNama as $key => $value) 
+			{
+				$json = $value['nama'];	
+			}	
+		echo json_encode($json);
+	}
+	
+	public function getDtBarang()
+	{
+		$barang 		= $this->input->get('barang');
+		$getDtBarang 	= $this->model->selectdata5('barang where kode_barang = '.$barang,'nama_barang,jenis_barang')->result_array();
+		//print_r($getDtBarang);exit;
+		$json 			=  [];
+		foreach ($getDtBarang as $key => $value)  
+			{	$json['barang']= $value['nama_barang'];	
+				$json['jenis']= $value['jenis_barang'];
+				//$json = $value['nama_barang'];	
+				//$json = $value['jenis_barang'];	
+			}	
+		echo json_encode($json);
+	}
 
 }

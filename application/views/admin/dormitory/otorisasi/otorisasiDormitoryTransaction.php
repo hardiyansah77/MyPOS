@@ -39,7 +39,7 @@
                 <tbody>
                 <?php $no=1; foreach ($otorisasiDormitoryTransaction  as $r): ?>
                 <tr>
-                  <td><center><a href="<?php echo base_url();?>coba/detailTransaction/<?=$r['id_transaction'] ?>"><?=$r['siswa_nopin'] ?></a></center>
+                  <td><center><a href="<?php echo base_url();?>admin/detailTransaction/<?=$r['id_transaction'] ?>"><?=$r['siswa_nopin'] ?></a></center>
                               <input type="hidden" name="id_transaction" value="<?=$r['id_transaction'] ?>"/></td>
                   <td><?=$r['parent'] ?></td>
                   <td><?=$r['class'] ?></td>
@@ -50,7 +50,7 @@
                   <td><center>
                               <div class="hidden-sm hidden-xs action-buttons">
 
-                                <a class="green" href="<?=base_url();?>coba/actionOtorisasiDormitoryTransaction/<?=$r['id_transaction'] ?>">
+                                <a class="green" href="<?=base_url();?>admin/actionOtorisasiDormitoryTransaction/<?=$r['id_transaction'] ?>">
                                   <i class="ace-icon fa fa-check-square-o bigger-130"></i>
                                 </a>
                               </div></center></td>
