@@ -27,41 +27,64 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
+			<?php foreach ($karyawan  as $data): ?>
             <form class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                    <p class="col-sm-2 text-left">NIK </p>
 
-                  <div class="col-sm-5">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
-
-                  <div class="col-sm-5">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-offset-3 col-sm-10">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> Remember me
-                      </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="nik" value="<?php echo $data->nik ?>" class="form-control" autocomplete="off" placeholder="NIK" value="<?php echo $edit['nik']; 
+                        ?>" readonly="readonly">
                     </div>
-                  </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="col-sm-2 text-left">Nama </p>
+
+                    <div class="col-sm-10">
+                        <input type="text" name="nama" value="<?php echo $data->nama ?>" class="form-control" autocomplete="off" placeholder="Nama" value="<?php echo $edit['nama'] ?>">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="col-sm-2 text-left">Jenis Kelamin </p>
+
+                    <div class="col-sm-10">
+					<select name="jenis_kelamin" class="form-control" id="jk">
+					 <option value="L">Laki - Laki</option>
+					 <option value="P">Perempuan</option>
+					 
+				   </select>                   
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="col-sm-2 text-left">Tanggal Lahir </p>
+
+                    <div class="col-sm-10">
+                        <input type="date" name="ttl" class="form-control" autocomplete="off" placeholder="Tanggal Lahir" id="tanggal"  value="<?php echo $data->ttl ?>">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="col-sm-2 text-left">Bagian </p>
+
+                    <div class="col-sm-10">
+                        <input type="text" name="bagian" value="<?php echo $data->bagian ?>" class="form-control" autocomplete="off" placeholder="Bagian"  value="<?php echo $edit['bagian']; ?>">
+                    </div>
                 </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-info">Sign in</button>
+                <button type="submit" class="btn btn-default">Batal</button>
+                <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>
               <!-- /.box-footer -->
             </form>
+			<?php endforeach ?>
           </div>
           <!-- /.box -->
           <!-- general form elements disabled -->

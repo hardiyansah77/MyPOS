@@ -27,89 +27,36 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="<?php echo base_url('admin/updateDormitoryTransaction');?>" method="post" class="form-horizontal">
+            <form class="form-horizontal">
               <div class="box-body">
-				<div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Level</label>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
 
                   <div class="col-sm-5">
-                    <select name="jenjang" id="jenjang" class="form-control">
-					<?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><option value="<?=$r->jenjang ?>"><?= strtoupper($r->jenjang) ?></option><?php endforeach ?>
-                    <option> -- Select level -- </option>
-                    <?php foreach ($dtDormitoryTransaction  as $r): ?>
-						<option value="<?=$r['unit_name'] ?>"><?=$r['unit_name'] ?></option>
-					<?php endforeach ?>
-                  </select>
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
                   </div>
                 </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Name</label>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
 
                   <div class="col-sm-5">
-                    <select class="form-control" name="siswa_nopin" required>
-						<?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><option value="<?=$r->siswa_nopin ?>"><?=$r->siswa_nopin ?></option><?php endforeach ?>
-					</select>
-					<input type="hidden" id ="gender" readonly name="gender">
+                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                   </div>
                 </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Parent / Guardian of</label>
-
-                  <div class="col-sm-5">
-					<?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?>
-						<input type="text" name="parent" value="<?=$r->parent ?>" id ="parent" class="form-control" placeholder="Parent / Guardian of ..." readonly>
-						<input type="hidden" readonly name="id_transaction" value="<?=$r->id_transaction ?>" />
-					<?php endforeach ?>
-				</div>
-                </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Class</label>
-
-                  <div class="col-sm-5">
-					<?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><input type="text" name="class" value="<?=$r->class ?>" id ="class" class="form-control" placeholder="Class ..." readonly><?php endforeach ?>
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Floor</label>
-
-                  <div class="col-sm-5">
-                    <select name="floor" class="form-control">
-					<?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><option value="<?=$r->floor ?>"><?= $r->floor ?></option><?php endforeach ?>
-                    <option> -- Select floor -- </option>
-                    <?php foreach ($dtFloor  as $r): ?>
-						<option value="<?=$r['floor'] ?>"><?=$r['floor'] ?></option>
-					<?php endforeach ?>
-                  </select>
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Room  Type</label>
-
-                  <div class="col-sm-5">
-                    <select class="form-control" name="type" id="type" required>
-						<?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><option value="<?=$r->type ?>"><?= $r->type ?></option><?php endforeach ?>
-					</select>
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Room Number</label>
-
-                  <div class="col-sm-5">
-                    <?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><input type="text" name="room_number" value="<?=$r->room_number ?>" class="form-control" id="inputEmail3" placeholder="Input room number ..."><?php endforeach ?>
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Price</label>
-
-                  <div class="col-sm-5">
-					<?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><input type="text" name="price" id ="price" value="<?=$r->price ?>" class="form-control" placeholder="Input price ..." readonly><?php endforeach ?>
+                <div class="form-group">
+                  <div class="col-sm-offset-3 col-sm-10">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Remember me
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="submit" class="btn btn-default">Cancel</button>
                 <button type="submit" class="btn btn-info">Sign in</button>
 			  </div>
               </div>
@@ -341,128 +288,5 @@
 <script src="<?php echo base_url();?>assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets/dist/js/demo.js"></script>
-<script type="text/javascript">
-
-$( "select[name='jenjang']" ).change(function () {
-    var jenjangID = $(this).val();
-
-
-    if(jenjangID) {
-
-
-        $.ajax({
-            url: "<?php echo base_url('ajax/getNama');?>",
-			//type: "POST",
-            dataType: 'json',
-            data: {'id':jenjangID},
-			  //data: "id=" + jenjangID,
-
-             success: function(data) {
-				//console.log(data);
-                $('select[name="siswa_nopin"]').empty();
-                $.each(data, function(key, value) {
-                    $('select[name="siswa_nopin"]').append('<option value="'+ key +'">'+ value +'</option>');
-                });
-            },
-			 error: function(jqXHR, exception) {
-            //alert('[jqXHR:' + jqXHR + '], [textStatus:' + textStatus + '], [thrownError:' + errorThrown + '])');
-            if (jqXHR.status === 0) {
-                alert('Not connect.\n Verify Network.');
-            } else if (jqXHR.status == 404) {
-                alert('Requested page not found. [404]');
-            } else if (jqXHR.status == 500) {
-                alert('Internal Server Error [500].');
-            } else if (exception === 'parsererror') {
-                alert('Requested JSON parse failed.');
-            } else if (exception === 'timeout') {
-                alert('Time out error.');
-            } else if (exception === 'abort') {
-                alert('Ajax request aborted.');
-            } else {
-                alert('Uncaught Error.\n' + jqXHR.responseText);
-            }
-        },
-        });
-
-
-    }else{
-        $('select[name="siswa_nopin"]').empty();
-    }
-});
-
-$( "select[name='siswa_nopin']" ).change(function () {
-    var jenjangID1 = $("select#jenjang").val();
-    var siswa_nopin = $(this).val();
-	console.log(jenjangID1);
-
-    if(jenjangID1 && siswa_nopin) {
-
-
-        $.ajax({
-            url: "<?php echo base_url('ajax/getDt');?>",
-            dataType: 'Json',
-            data: {'siswa_nopin':siswa_nopin , 'jenjang':jenjangID1},
-             success: function(data) {
-                $('#parent').val(data.parent)
-                $('#class').val(data.class)
-                $('#gender').val(data.gender)
-            }
-        });
-
-
-    }else{
-        $('select[name="siswa_nopin"]').empty();
-    }
-});
-
-$( "select[name='floor']" ).change(function () {
-    var floorID = $(this).val();
-
-
-    if(floorID) {
-
-
-        $.ajax({
-            url: "<?php echo base_url('ajax/getRoomType');?>",
-            dataType: 'Json',
-            data: {'id':floorID},
-            success: function(data) {
-                $('select[name="type"]').empty();
-                $.each(data, function(key, value) {
-                    $('select[name="type"]').append('<option value="'+ key +'">'+ value +'</option>');
-                });
-            }
-        });
-
-
-    }else{
-        $('select[name="type"]').empty();
-    }
-});
-
-$( "select[name='type']" ).change(function () {
-    var typeID = $(this).val();
-
-
-    if(typeID) {
-
-
-        $.ajax({
-            url: "<?php echo base_url('ajax/getPrice');?>",
-            dataType: 'Json',
-            data: {'type':typeID},
-            success: function(data) {
-				$('#price').val(data)
-				//console.log(data);
-            }
-        });
-
-
-    }else{
-        $('select[name="price"]').empty();
-    }
-});
-
-		</script>
 </body>
 </html>

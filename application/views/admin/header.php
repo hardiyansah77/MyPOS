@@ -377,6 +377,32 @@
             <li><a href="<?php echo base_url('admin/dtPengguna');?>"><i class="fa fa-circle-o"></i> Data Pengguna</a></li>
           </ul>
         </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Transaksi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url('admin/peminjaman');?>"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
+            <li><a href="<?php echo base_url('admin/pengembalian');?>"><i class="fa fa-circle-o"></i> pengembalian</a></li>
+          </ul>
+        </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Laporan</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url('admin/peminjaman');?>"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
+            <li><a href="<?php echo base_url('admin/pengembalian');?>"><i class="fa fa-circle-o"></i> pengembalian</a></li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
