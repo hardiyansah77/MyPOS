@@ -27,41 +27,42 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
+			<?php foreach ($departemen  as $data): ?>
             <form class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                    <p class="col-sm-2 text-left">Id _Departemen </p>
 
-                  <div class="col-sm-5">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
-
-                  <div class="col-sm-5">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-offset-3 col-sm-10">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> Remember me
-                      </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="id_departemen" class="form-control" autocomplete="off" placeholder="Id Departemen" value="<?php echo $data->id_departemen ?>" readonly="readonly">
                     </div>
-                  </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="col-sm-2 text-left">Nama Departemen </p>
+
+                    <div class="col-sm-10">
+                        <input type="text" name="nama_departemen" class="form-control" autocomplete="off" placeholder="Nama Departemen" value="<?php echo $data->nama_departemen ?>">
+                    </div>
+                </div>
+				<div class="form-group">
+                    <p class="col-sm-2 text-left">Ruang Departemen </p>
+
+                    <div class="col-sm-10">
+                        <input type="text" name="ruang_departemen" class="form-control" autocomplete="off" placeholder="ruang_departemen" value="<?php echo $data->ruang_departemen ?>">
+                    </div>
                 </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-info">Sign in</button>
+                <button type="submit" class="btn btn-default">Batal</button>
+                <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>
               <!-- /.box-footer -->
             </form>
+			<?php endforeach ?>
           </div>
           <!-- /.box -->
           <!-- general form elements disabled -->

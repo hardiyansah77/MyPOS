@@ -27,104 +27,36 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="<?php echo base_url('admin/actionAddDormitory');?>" method="post" class="form-horizontal">
+            <form class="form-horizontal">
               <div class="box-body">
-								<div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Floor</label>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
 
                   <div class="col-sm-5">
-                    <select name="floor" class="form-control">
-                    <option value=""> -- Select floor -- </option>
-                    <option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-                  </select>
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Type</label>
-
-                  <div class="col-sm-5">
-                    <select name="type" class="form-control">
-                    <option value=""> -- Select type -- </option>
-                    <option value="Suite">Suite</option>
-					<option value="Family">Family</option>
-					<option value="Deluxe A">Deluxe A</option>
-					<option value="Deluxe B">Deluxe B</option>
-					<option value="Superior A">Superior A</option>
-					<option value="Superior B">Superior B</option>
-					<option value="Superior C">Superior C</option>
-					<option value="Standard A">Standard A</option>
-					<option value="Standard B">Standard B</option>
-					<option value="Standard C">Standard C</option>
-                  </select>
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Bed</label>
-
-                  <div class="col-sm-5">
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="bed" required id="optionsRadios1" value="1" checked>
-                      1
-                    </label>
-					<label>
-                      <input type="radio" name="bed" required id="optionsRadios1" value="2">
-                      2
-                    </label>
-					<label>
-                      <input type="radio" name="bed" required id="optionsRadios1" value="3">
-                      3
-                    </label>
-					<label>
-                      <input type="radio" name="bed" required id="optionsRadios1" value="4">
-                      4
-                    </label>
-                  </div>
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Room Size</label>
-
-                  <div class="col-sm-5">
-                    <input type="text" name="room_size" class="form-control" id="inputEmail3" placeholder="Input room size ...">
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Room Quantity</label>
-
-                  <div class="col-sm-5">
-                    <div class="row">
-					<div class="col-xs-6">
-					  <input type="text" name="qty_male" class="form-control" placeholder="Male ...">
-					</div>
-					<div class="col-xs-6">
-					  <input type="text" name="qty_female" class="form-control" placeholder="Female ...">
-					</div>
-				  </div>
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Facilities</label>
+                  <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
 
                   <div class="col-sm-5">
-                    <textarea name="facilities" class="form-control" rows="3" placeholder="Input facilities ..."></textarea>
+                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                   </div>
                 </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Price</label>
-
-                  <div class="col-sm-5">
-                    <input type="text" name="price" class="form-control" id="inputEmail3" placeholder="Input price ...">
+                <div class="form-group">
+                  <div class="col-sm-offset-3 col-sm-10">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Remember me
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="submit" class="btn btn-default">Cancel</button>
                 <button type="submit" class="btn btn-info">Sign in</button>
 			  </div>
               </div>

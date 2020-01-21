@@ -50,7 +50,7 @@
                   <td><center>
                               <div class="hidden-sm hidden-xs action-buttons">
 
-                                <a class="green" href="<?=base_url();?>admin/actionOtorisasiDormitoryTransaction/<?=$r['id_transaction'] ?>">
+                                <a class="green" href="<?=base_url();?>coba/actionOtorisasiDormitoryTransaction/<?=$r['id_transaction'] ?>">
                                   <i class="ace-icon fa fa-check-square-o bigger-130"></i>
                                 </a>
                               </div></center></td>

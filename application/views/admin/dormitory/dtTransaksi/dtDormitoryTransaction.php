@@ -75,11 +75,11 @@
                   <td><?=$r['class'] ?></td>
                   <td><?=$r['type'] ?></td>
                   <td><?=$r['floor'] ?><?=$r['room_number'] ?></td>
-                  <td>Rp.<?= number_format($r['price']) ?></td>
+                  <td>Rp.<?= ($r['price']) ?></td>
                   <td>
 				  <center>
 					<div class="hidden-sm hidden-xs action-buttons">
-						<a class="green" href="<?=base_url();?>admin/formEditDormitoryTransaction/<?=$r['id_transaction'] ?>">
+						<a class="green" href="<?=base_url();?>admin/formEditDormitoryTransaction">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
 						<a class="red" href="#">

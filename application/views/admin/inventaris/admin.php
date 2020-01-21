@@ -170,12 +170,10 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/inventaris/dtMaster/karyawan/formAdd');
 		}
 		
-	public function formEditKaryawan($nik)
+	public function formEditKaryawan()
 		{
-			$where = array('nik' => $nik);
-			$data['karyawan'] = $this->model->edit_data($where,'karyawan')->result();
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/dtMaster/karyawan/formEdit', $data);
+			$this->load->view('admin/inventaris/dtMaster/karyawan/formEdit');
 		}
 		
 	public function dtBarang()
@@ -194,12 +192,10 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/inventaris/dtMaster/barang/formAdd');
 		}
 		
-	public function formEditBarang($kode_barang)
+	public function formEditBarang()
 		{
-			$where = array('kode_barang' => $kode_barang);
-			$data['barang'] = $this->model->edit_data($where,'barang')->result();
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/dtMaster/barang/formEdit', $data);
+			$this->load->view('admin/inventaris/dtMaster/barang/formEdit');
 		}
 		
 	public function dtJenisBarang()
@@ -214,17 +210,14 @@ class Admin extends CI_Controller {
 		
 	public function formAddJnsBarang()
 		{
-			
 			$this->load->view('admin/header');
 			$this->load->view('admin/inventaris/dtMaster/jenisBarang/formAdd');
 		}
 		
-	public function formEditJnsBarang($id_jenis)
+	public function formEditJnsBarang()
 		{
-			$where = array('id_jenis' => $id_jenis);
-			$data['jenis'] = $this->model->edit_data($where,'jenis')->result();
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/dtMaster/jenisBarang/formEdit', $data);
+			$this->load->view('admin/inventaris/dtMaster/jenisBarang/formEdit');
 		}
 		
 	public function dtLokasi()
@@ -244,12 +237,10 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/inventaris/dtMaster/lokasi/formAdd');
 		}
 		
-	public function formEditLokasi($kode_ruang)
+	public function formEditLokasi()
 		{
-			$where = array('kode_ruang' => $kode_ruang);
-			$data['lokasi'] = $this->model->edit_data($where,'lokasi')->result();
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/dtMaster/lokasi/formEdit', $data);
+			$this->load->view('admin/inventaris/dtMaster/lokasi/formEdit');
 		}
 		
 	public function dtMutasi()
@@ -268,12 +259,10 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/inventaris/dtMaster/mutasi/formAdd');
 		}
 		
-	public function formEditMutasi($no_mutasi)
+	public function formEditMutasi()
 		{
-			$where = array('no_mutasi' => $no_mutasi);
-			$data['mutasi'] = $this->model->edit_data($where,'mutasi')->result();
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/dtMaster/mutasi/formEdit', $data);
+			$this->load->view('admin/inventaris/dtMaster/mutasi/formEdit');
 		}
 		
 	public function dtDepartemen()
@@ -292,12 +281,10 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/inventaris/dtMaster/departemen/formAdd');
 		}
 		
-	public function formEditDepartemen($id_departemen)
+	public function formEditDepartemen()
 		{
-			$where = array('id_departemen' => $id_departemen);
-			$data['departemen'] = $this->model->edit_data($where,'departemen')->result();
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/dtMaster/departemen/formEdit', $data);
+			$this->load->view('admin/inventaris/dtMaster/departemen/formEdit');
 		}
 
 	public function dtPenempatan()
@@ -316,12 +303,10 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/inventaris/dtMaster/penempatan/formAdd');
 		}
 		
-	public function formEditPenempatan($nama_barang)
+	public function formEditPenempatan()
 		{
-			$where = array('nama_barang' => $nama_barang);
-			$data['penempatan'] = $this->model->edit_data($where,'penempatan')->result();
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/dtMaster/penempatan/formEdit', $data);
+			$this->load->view('admin/inventaris/dtMaster/penempatan/formEdit');
 		}	
 	
 	public function dtPengguna()
@@ -340,14 +325,11 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/inventaris/dtMaster/pengguna/formAdd');
 		}
 		
-	public function formEditPengguna($id_petugas)
+	public function formEditPengguna()
 		{
-			$where = array('id_petugas' => $id_petugas);
-			$data['user'] = $this->model->edit_data($where,'user')->result();
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/dtMaster/pengguna/formEdit', $data);
+			$this->load->view('admin/inventaris/dtMaster/pengguna/formEdit');
 		}
-	
 
 
 /*======================================================================================================================

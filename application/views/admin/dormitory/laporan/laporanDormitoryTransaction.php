@@ -37,11 +37,24 @@
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
           </div>
         </div>
-	  <form action="<?php echo site_url("admin/SearchDormitoryTransaction")?>" method="post">
         <div class="box-body">
           <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Date range button:</label>
+
+                <div class="input-group">
+                  <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+                    <span>
+                      <i class="fa fa-calendar"></i> Date range picker
+                    </span>
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
             <!-- /.col -->
-            <div class="col-md-8">
+            <div class="col-md-6">
               <div class="form-group">
 				<div class="form-group">
                 <label>Date range:</label>
@@ -50,7 +63,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" name="reservation" class="form-control pull-right" id="reservation">
+                  <input type="text" class="form-control pull-right" id="reservation">
                 </div>
                 <!-- /.input group -->
               </div>
@@ -71,10 +84,9 @@
             </div>
             <!-- /.col -->
           </div><br>
-		  <center><input type="submit" class="btn btn-block btn-primary" value="Search"></center>
+		  <center><button type="button" class="btn btn-block btn-primary">Search</button></center>
           <!-- /.row -->
         </div>
-	</form>
       </div>
 	  
       <!-- /.tabble if need -->
