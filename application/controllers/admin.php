@@ -132,7 +132,7 @@ class Admin extends CI_Controller {
 			$orderMale 				= $this->model->selectcount('id_transaction','tbl_dormitory_transaction where gender = "L"');
 			$orderFemale 			= $this->model->selectcount('id_transaction','tbl_dormitory_transaction where gender = "P"');
 			$orderAll 				= $this->model->selectcount('id_transaction','tbl_dormitory_transaction');
-			$dtDormitoryTransaction = $this->model->selectdata('tbl_dormitory_transaction order by id_transaction')->result_array();
+			$dtDormitoryTransaction = $this->model->selectdata('tbl_dormitory_transaction WHERE state=0 order by id_transaction')->result_array();
 			$data = array(
 			'ttlMale'					=> $ttlMale,
 			'ttlFemale'					=> $ttlFemale,
