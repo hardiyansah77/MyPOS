@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        General Form Elements
-        <small>Preview</small>
+       Forms Edit Data Karyawan
+        <small> </small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">Forms Edit</a></li>
+        <li class="active">Data Karyawan</li>
       </ol>
     </section>
 
@@ -23,7 +23,7 @@
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Horizontal Form</h3>
+              <h3 class="box-title">Masukkan Data Karyawan</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -34,8 +34,7 @@
                     <p class="col-sm-2 text-left">NIK </p>
 
                     <div class="col-sm-10">
-                        <input type="text" name="nik" value="<?php echo $data->nik ?>" class="form-control" autocomplete="off" placeholder="NIK" value="<?php echo $edit['nik']; 
-                        ?>" readonly="readonly">
+                        <input type="text" name="nik"  class="form-control" autocomplete="off" placeholder="NIK" value="<?php echo $data->nik ?>" readonly="readonly">
                     </div>
                 </div>
 
@@ -43,7 +42,7 @@
                     <p class="col-sm-2 text-left">Nama </p>
 
                     <div class="col-sm-10">
-                        <input type="text" name="nama" value="<?php echo $data->nama ?>" class="form-control" autocomplete="off" placeholder="Nama" value="<?php echo $edit['nama'] ?>">
+                        <input type="text" name="nama"  class="form-control" autocomplete="off" placeholder="Nama" value="<?php echo $data->nama ?>">
                     </div>
                 </div>
 
@@ -51,11 +50,11 @@
                     <p class="col-sm-2 text-left">Jenis Kelamin </p>
 
                     <div class="col-sm-10">
-					<select name="jenis_kelamin" class="form-control" id="jk">
-					 <option value="L">Laki - Laki</option>
-					 <option value="P">Perempuan</option>
-					 
-				   </select>                   
+                    <select name="jenis" class="form-control" >
+                        <option value="">- Pilih Jenis -</option>
+                        <option value="L" <?php echo set_select('jenis','L'); ?> >Laki Laki</option>
+                        <option value="P" <?php echo set_select('jenis','P'); ?>>Perempuan</option>
+                    </select>   
                     </div>
                 </div>
 
@@ -71,7 +70,7 @@
                     <p class="col-sm-2 text-left">Bagian </p>
 
                     <div class="col-sm-10">
-                        <input type="text" name="bagian" value="<?php echo $data->bagian ?>" class="form-control" autocomplete="off" placeholder="Bagian"  value="<?php echo $edit['bagian']; ?>">
+                        <input type="text" name="bagian"  class="form-control" autocomplete="off" placeholder="Bagian" value="<?php echo $data->bagian ?>">
                     </div>
                 </div>
               </div>
