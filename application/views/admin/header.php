@@ -264,7 +264,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo base_url();?>assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php echo ucfirst($this->session->userdata('admin_username'));?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -272,7 +272,7 @@
                 <img src="<?php echo base_url();?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  <?php echo ucfirst($this->session->userdata('admin_username'));?> - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -297,7 +297,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url('admin/logout');?>" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -320,7 +320,7 @@
           <img src="<?php echo base_url();?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo ucfirst($this->session->userdata('admin_username'));?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -402,6 +402,50 @@
             <li><a href="<?php echo base_url('admin/laporanTransaksiInventaris');?>"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
             <!--<li><a href="<?php echo base_url('admin/pengembalian');?>"><i class="fa fa-circle-o"></i> pengembalian</a></li>-->
           </ul>
+		  <?php
+			$dtmenu = $this->model->selectmenu('SELECT 
+										SE_GrpProgram.grp_program_code,
+										UPPER(SE_GrpProgram.grp_program_name),
+										SE_GrpProgram.grp_program_icon
+									FROM
+										SE_GrpProgram,
+										SE_Program,
+										SE_UserProgram
+									WHERE
+										SE_UserProgram.program_code = SE_Program.program_code
+											AND SE_Program.grp_program_code = SE_GrpProgram.grp_program_code
+											AND SE_UserProgram.user_id = "'.$_SESSION['admin_id'].'"
+									GROUP BY SE_GrpProgram.grp_program_code
+									ORDER BY grp_program_urut , grp_program_name')->result_array();
+			foreach ($dtmenu  as $r): ?>
+		  <li class="treeview">
+          <a href="#">
+            <i class="fa fa-<?=$r['grp_program_icon'] ?>"></i>
+            <span><?=$r['UPPER(SE_GrpProgram.grp_program_name)'] ?></span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+		  <?php
+			$dtsubmenu = $this->model->selectmenu('SELECT 
+										SE_Program.program_code,
+										SE_Program.program_name,
+										SE_Program.program_act
+									FROM
+										SE_Program,
+										SE_UserProgram
+									WHERE
+										SE_UserProgram.program_code = SE_Program.program_code
+											AND SE_UserProgram.user_id = "'.$_SESSION['admin_id'].'"
+											AND SE_Program.grp_program_code = "'.$r['grp_program_code'].'"
+									ORDER BY program_urut , program_name')->result_array(); 
+			foreach ($dtsubmenu  as $s): ?>
+            <li><a href="<?php echo base_url($s['program_act']);?>"><i class="fa fa-circle-o"></i> <?=$s['program_name'] ?></a></li>
+		   <?php endforeach ?>
+          </ul>
+		  </li>
+		  <?php endforeach ?>
         </li>
       </ul>
     </section>

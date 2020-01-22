@@ -2,18 +2,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
-/*	public function __construct()
-    {
-        parent::__construct();
-
-		if($this->session->userdata('super_admin_is_logged_in')=='')
+	public function __construct()
 		{
-		$this->session->set_flashdata('msg','Please Login to Continue');
-		redirect('site');
+			parent::__construct();
+
+			if($this->session->userdata('admin_is_logged_in')=='')
+			{
+			$this->session->set_flashdata('msg','Please Login to Continue');
+			redirect('site');
+			}
+			$this->load->model('model');
+			//$this->load->model('m_cari');
 		}
-		$this->load->model('model');
-		//$this->load->model('m_cari');
-    }*/
 
 	public function index()
 		{
@@ -271,7 +271,7 @@ class Admin extends CI_Controller {
 		print_r($filterSearch2);exit;
 		$class		   = $this->input->post('class');
 		$room		   = $this->input->post('room');
-		//print_r($filterSearch2);exit;
+		print_r($filterSearch1);exit;
 		//print_r($class && $room);exit;
 		//print_r($room);exit;
 		$data 		= array('results' => $this->model->searchdate($filterSearch1,$filterSearch2,$class,$room),
@@ -584,4 +584,19 @@ class Admin extends CI_Controller {
 													INVENTARIS
 
 =======================================================================================================================*/
+	public function logout()
+    {
+            $array_items = array(   
+                        'admin_username',
+                        'admin_password' ,
+                        'admin_level' ,
+                        'admin_id',
+                        'admin_is_logged_in'
+                        );
+
+        $this->session->unset_userdata($array_items);
+         $this->session->set_flashdata('msg', 'Administrator Signed Out Now!');
+            redirect('site');
+    }
 }
+
