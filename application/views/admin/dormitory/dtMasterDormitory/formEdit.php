@@ -34,7 +34,7 @@
                   <label for="inputPassword3" class="col-sm-3 control-label">Floor</label>
 
                   <div class="col-sm-5">
-                    <select name="floor" class="form-control">
+                    <select name="floor" required class="form-control">
 					<option value="<?php echo $data->floor ?>"><?php echo $data->floor ?></option>
                     <option value=""> -- Select floor -- </option>
                     <option value="1">1</option>
@@ -48,7 +48,7 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Type</label>
 
                   <div class="col-sm-5">
-                    <select name="type" class="form-control">
+                    <select name="type" required class="form-control">
 					<option value="<?php echo $data->type ?>"><?php echo $data->type ?></option>
                     <option value=""> -- Select type -- </option>
                     <option value="Suite">Suite</option>
@@ -65,7 +65,7 @@
                   </div>
                 </div>
 				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Bed</label>
+                  <label for="inputEmail3" required class="col-sm-3 control-label">Bed</label>
 
                   <div class="col-sm-5">
                   <div class="radio">
@@ -85,19 +85,19 @@
 						}
 					?>
                     <label>
-                      <input type="radio" name="bed" <?= $bed1; ?> required id="optionsRadios1" value="1">
+                      <input type="radio" required name="bed" <?= $bed1; ?> required id="optionsRadios1" value="1">
                       1
                     </label>
 					<label>
-                      <input type="radio" name="bed" <?= $bed2; ?> required id="optionsRadios1" value="2">
+                      <input type="radio" required name="bed" <?= $bed2; ?> required id="optionsRadios1" value="2">
                       2
                     </label>
 					<label>
-                      <input type="radio" name="bed" <?= $bed3; ?> required id="optionsRadios1" value="3">
+                      <input type="radio" required name="bed" <?= $bed3; ?> required id="optionsRadios1" value="3">
                       3
                     </label>
 					<label>
-                      <input type="radio" name="bed" <?= $bed4; ?> required id="optionsRadios1" value="4">
+                      <input type="radio" required name="bed" <?= $bed4; ?> required id="optionsRadios1" value="4">
                       4
                     </label>
                   </div>
@@ -107,7 +107,7 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Room Size</label>
 
                   <div class="col-sm-5">
-                    <input type="text" name="room_size" value="<?php echo $data->room_size ?>" class="form-control" id="inputEmail3" placeholder="Input room size ...">
+                    <input type="text" required name="room_size" value="<?php echo $data->room_size ?>" class="form-control" id="inputEmail3" placeholder="Input room size ...">
                     <input type="hidden" name="id" value="<?php echo $data->id ?>" class="form-control" id="inputEmail3" placeholder="Input room size ...">
                   </div>
                 </div>
@@ -117,10 +117,10 @@
                   <div class="col-sm-5">
                     <div class="row">
 					<div class="col-xs-6">
-					  <input type="text" name="qty_male" value="<?php echo $data->qty_male ?>" class="form-control" placeholder="Male ...">
+					  <input type="text" name="qty_male" required value="<?php echo $data->qty_male ?>" class="form-control" placeholder="Male ...">
 					</div>
 					<div class="col-xs-6">
-					  <input type="text" name="qty_female" value="<?php echo $data->qty_female ?>" class="form-control" placeholder="Female ...">
+					  <input type="text" name="qty_female" required value="<?php echo $data->qty_female ?>" class="form-control" placeholder="Female ...">
 					</div>
 				  </div>
                   </div>
@@ -129,22 +129,22 @@
                   <label for="inputPassword3" class="col-sm-3 control-label">Facilities</label>
 
                   <div class="col-sm-5">
-                    <textarea name="facilities" class="form-control" rows="3" placeholder="Input facilities ..."><?php echo $data->facilities ?></textarea>
+                    <textarea name="facilities" required class="form-control" rows="3" placeholder="Input facilities ..."><?php echo $data->facilities ?></textarea>
                   </div>
                 </div>
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Price</label>
 
                   <div class="col-sm-5">
-                    <input type="text" name="price" value="<?php echo $data->price ?>" class="form-control" id="inputEmail3" placeholder="Input price ...">
+                    <input type="text" name="price" required value="<?php echo $data->price ?>" class="form-control" id="inputEmail3" placeholder="Input price ...">
                   </div>
                 </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="submit" class="btn btn-info">Sign in</button>
+                <a href="<?php echo base_url('admin/dtDormitory');?> "type="submit" class="btn btn-default">Batal</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>
               <!-- /.box-footer -->

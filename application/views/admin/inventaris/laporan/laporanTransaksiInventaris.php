@@ -13,18 +13,6 @@
       </ol>
     </section>
 	<!-- /.test -->
-<div class="box-body">
-          <div class="box-body">
-              <!-- Date range -->
-              
-              <!-- /.form group -->
-
-              <!-- Date and time range -->
-              
-              <!-- /.form group -->
-
-            </div>
-        </div>
 		<!-- /.test -->
     <!-- Main content -->
     <section class="content">
@@ -39,16 +27,31 @@
         </div>
         <div class="box-body">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
 				<div class="form-group">
-                <label>Date range:</label>
+                <label>Tanggal awal:</label>
 
                 <div class="input-group col-sm-12">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="reservation">
+                  <input type="date" name="datepicker" class="form-control pull-right"> 
+                </div>
+                <!-- /.input group -->
+              </div>
+              </div>
+            </div>
+			<div class="col-md-6">
+              <div class="form-group">
+				<div class="form-group">
+                <label>Tanggal akhir:</label>
+
+                <div class="input-group col-sm-12">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="date" name="datepicker1" class="form-control pull-right"> 
                 </div>
                 <!-- /.input group -->
               </div>
@@ -61,7 +64,63 @@
       </div>
 	  
       <!-- /.tabble if need -->
-	  
+	  <div class="row">
+        <div class="col-xs-12">
+          <!-- /.box -->
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Laporan Dormitory Transaction </h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="exampl2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>NIS</th>
+                  <th>Name</th>
+                  <th>Parent/Guardian of</th>
+                  <th>Class</th>
+                  <th>Room Type</th>
+                  <th>Room number</th>
+                  <th>Price</th>
+                  <th>periode</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                <tr>
+                  <td><a href="#">1</a></td>
+                  <td>nama</td>
+                  <td>parent</td>
+                  <td>class</td>
+                  <td>type</td>
+                  <td>floor/room_number</td>
+                  <td>Rp.price</td>
+                  <td>created_date</td>
+                </tr>
+                
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th></th>
+                  <th>Total</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Rp.Total price</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+            <!-- /.box-header -->
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
     </section>
     <!-- /.content -->
   </div>

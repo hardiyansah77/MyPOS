@@ -24,6 +24,20 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+			<?php 
+			if(isset($_GET['message'])){
+			  $message = $_GET['message'];
+			  if($message == "successfully"){
+				echo '<div class="alert alert-block alert-success">
+				  <button type="button" class="close" data-dismiss="alert">
+					<i class="ace-icon fa fa-times"></i>
+				  </button>
+					<i class="ace-icon fa fa-check green"></i>
+					  Otoritation was successfully.
+				</div>';
+			  }
+			}
+		  ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>

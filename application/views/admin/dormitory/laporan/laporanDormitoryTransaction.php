@@ -13,18 +13,6 @@
       </ol>
     </section>
 	<!-- /.test -->
-<div class="box-body">
-          <div class="box-body">
-              <!-- Date range -->
-              
-              <!-- /.form group -->
-
-              <!-- Date and time range -->
-              
-              <!-- /.form group -->
-
-            </div>
-        </div>
 		<!-- /.test -->
     <!-- Main content -->
     <section class="content">
@@ -37,34 +25,38 @@
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
           </div>
         </div>
-		<form action="<?php echo base_url('admin/searchDormitoryTransaction');?>" method="post">
         <div class="box-body">
+		<form action="<?php echo base_url('admin/searchDormitoryTransaction');?>" method="post">
           <div class="row">
-            <div class="col-md-2">
-              <div class="form-group">
-                <label>Date range button:</label>
-
-                <div class="input-group">
-                  <button type="button" class="btn btn-default pull-right" id="daterange-btn">
-                    <span>
-                      <i class="fa fa-calendar"></i> Date range picker
-                    </span>
-                    <i class="fa fa-caret-down"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
+            
             <!-- /.col -->
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
 				<div class="form-group">
-                <label>Date range:</label>
+                <label>Tanggal awal:</label>
 
                 <div class="input-group col-sm-12">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" name="reservation" id="reservation">
+                 <!--<input type="text" name="datepicker" class="form-control pull-right" id="datepicker"> -->
+                 <input type="date" name="datepicker" class="form-control pull-right"> 
+                </div>
+                <!-- /.input group -->
+              </div>
+              </div>
+            </div>
+			<div class="col-md-4">
+              <div class="form-group">
+				<div class="form-group">
+                <label>Tanggal akhir:</label>
+
+                <div class="input-group col-sm-12">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+				  <!--<input type="text" name="datepicker1" class="form-control pull-right" id="datepicker1">-->
+				  <input type="date" name="datepicker1" class="form-control pull-right">
                 </div>
                 <!-- /.input group -->
               </div>
@@ -75,10 +67,10 @@
                 <label>Other</label>
               <div class="row">
                 <div class="col-xs-6">
-                  <input type="text" class="form-control" placeholder="Class">
+                  <input type="text" name="class" class="form-control" placeholder="Class">
                 </div>
                 <div class="col-xs-6">
-                  <input type="text" class="form-control" placeholder="Room">
+                  <input type="text" name="room" class="form-control" placeholder="Room">
                 </div>
               </div>
               </div>
@@ -87,12 +79,72 @@
           </div><br>
 		  <center><button type="submit" class="btn btn-block btn-primary">Search</button></center>
           <!-- /.row -->
+		</form>
         </div>
       </div>
 	  
       <!-- /.tabble if need -->
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- /.box -->
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Laporan Dormitory Transaction </h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="exampl2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>NIS</th>
+                  <th>Name</th>
+                  <th>Parent/Guardian of</th>
+                  <th>Class</th>
+                  <th>Room Type</th>
+                  <th>Room number</th>
+                  <th>Price</th>
+                  <th>periode</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($dtDormitoryApprove  as $r): ?>
+                <tr>
+                  <td><a href="#"><?=$r['siswa_nopin'] ?></a></td>
+                  <td><?=$r['nama'] ?></td>
+                  <td><?=$r['parent'] ?></td>
+                  <td><?=$r['class'] ?></td>
+                  <td><?=$r['type'] ?></td>
+                  <td><?=$r['floor'] ?><?=$r['room_number'] ?></td>
+                  <td>Rp.<?= number_format($r['price']) ?></td>
+                  <td><?=$r['created_date'] ?></td>
+                </tr>
+                <?php endforeach ?>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th></th>
+                  <th>Total</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Rp.<?php echo number_format($sum->{"sum(price)"}); ?></th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+            <!-- /.box-header -->
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
 	  
     </section>
+	
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -363,6 +415,10 @@
 
     //Date picker
     $('#datepicker').datepicker({
+      autoclose: true
+    })
+	
+	$('#datepicker1').datepicker({
       autoclose: true
     })
 

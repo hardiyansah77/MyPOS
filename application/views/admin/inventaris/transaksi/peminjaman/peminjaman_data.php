@@ -27,8 +27,23 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="<?php echo base_url('admin/actionAddDormitoryTransaction');?>" method="post" class="form-horizontal">
+			
+            <form action="<?php echo base_url('admin/actionAddTransaksiInventaris');?>" method="post" class="form-horizontal">
               <div class="box-body">
+				<?php 
+				if(isset($_GET['message'])){
+				  $message = $_GET['message'];
+				  if($message == "input"){
+					echo '<div class="alert alert-block alert-success">
+					  <button type="button" class="close" data-dismiss="alert">
+						<i class="ace-icon fa fa-times"></i>
+					  </button>
+						<i class="ace-icon fa fa-check green"></i>
+						  Data peminjaman berhasil diinput.
+					</div>';
+				  }
+				}
+			  ?>
 				<div class="form-group">
                   <label for="inputPassword3" class="col-sm-3 control-label">NIK</label>
 
@@ -45,7 +60,7 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Nama Karyawan</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="nama" id ="nama" class="form-control" placeholder="Nama karyawan ..." readonly>
+					<input type="text" name="" id ="nama" class="form-control" placeholder="Nama karyawan ..." readonly>
                   </div>
                 </div>
 				<div class="form-group">
@@ -64,21 +79,21 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Nama Barang</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="barang" id ="barang" class="form-control" placeholder="Nama barang ..." readonly>
+					<input type="text" name="" id ="barang" class="form-control" placeholder="Nama barang ..." readonly>
                   </div>
                 </div>
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Jenis Barang</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="jenis" id ="jenis" class="form-control" placeholder="Jenis barang ..." readonly>
+					<input type="text" name=""  id ="jenis" class="form-control" placeholder="Jenis barang ..." readonly>
                   </div>
                 </div>
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Jumlah Barang</label>
 
                   <div class="col-sm-5">
-                    <input type="number" name="room_number" class="form-control" id="inputEmail3" placeholder="Jumlah barang ...">
+                    <input type="number" required name="jml_barang" class="form-control" id="inputEmail3" placeholder="Jumlah barang ...">
                   </div>
                 </div>
               </div>

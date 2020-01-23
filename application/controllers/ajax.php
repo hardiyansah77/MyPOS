@@ -18,7 +18,7 @@ class Ajax extends CI_Controller {
 	
 	public function getDt()
 		{
-//die(json_encode('haha'));
+
 		$id 		= strtolower($this->input->get('jenjang'));
 		$nopin 		= $this->input->get('siswa_nopin');
 		$getdt 		= $this->model->selectdata1('siswa_'.$id.'
@@ -30,7 +30,7 @@ class Ajax extends CI_Controller {
 													siswa_'.$id.'.ayah_nama_lengkap,
 													siswa_'.$id.'.siswa_kelamin_id,
 													siswa_klapper'.$id.'.klapper_siswa_kelas_nama
-													')->result_array();
+													')->result_array(); //die(json_encode($getdt));
 		$json 		=  [];
 					
 		foreach ($getdt as $key => $value) 
@@ -38,6 +38,7 @@ class Ajax extends CI_Controller {
 				$json['parent']= $value['ayah_nama_lengkap'];	
 				$json['class']= $value['klapper_siswa_kelas_nama'];	
 				$json['gender']= $value['siswa_kelamin_id'];	
+				$json['nama']= $value['siswa_nama_lengkap'];	
 			}		
 		echo json_encode($json);
 	}
