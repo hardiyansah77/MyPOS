@@ -33,7 +33,7 @@
                   <label for="inputPassword3" class="col-sm-3 control-label">Floor</label>
 
                   <div class="col-sm-5">
-                    <select name="floor" class="form-control">
+                    <select name="floor" required class="form-control">
                     <option value=""> -- Select floor -- </option>
                     <option value="1">1</option>
 					<option value="2">2</option>
@@ -46,7 +46,7 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Type</label>
 
                   <div class="col-sm-5">
-                    <select name="type" class="form-control">
+                    <select name="type" required class="form-control">
                     <option value=""> -- Select type -- </option>
                     <option value="Suite">Suite</option>
 					<option value="Family">Family</option>
@@ -67,19 +67,19 @@
                   <div class="col-sm-5">
                   <div class="radio">
                     <label>
-                      <input type="radio" name="bed" required id="optionsRadios1" value="1" checked>
+                      <input type="radio" required name="bed" required id="optionsRadios1" value="1" checked>
                       1
                     </label>
 					<label>
-                      <input type="radio" name="bed" required id="optionsRadios1" value="2">
+                      <input type="radio" required name="bed" required id="optionsRadios1" value="2">
                       2
                     </label>
-					<label>
-                      <input type="radio" name="bed" required id="optionsRadios1" value="3">
+					<label> 
+                      <input type="radio" required name="bed" required id="optionsRadios1" value="3">
                       3
                     </label>
 					<label>
-                      <input type="radio" name="bed" required id="optionsRadios1" value="4">
+                      <input type="radio" required name="bed" required id="optionsRadios1" value="4">
                       4
                     </label>
                   </div>
@@ -89,7 +89,7 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Room Size</label>
 
                   <div class="col-sm-5">
-                    <input type="text" name="room_size" class="form-control" id="inputEmail3" placeholder="Input room size ...">
+                    <input type="text" name="room_size" required class="form-control" id="inputEmail3" placeholder="Input room size ...">
                   </div>
                 </div>
 				<div class="form-group">
@@ -98,10 +98,10 @@
                   <div class="col-sm-5">
                     <div class="row">
 					<div class="col-xs-6">
-					  <input type="text" name="qty_male" class="form-control" placeholder="Male ...">
+					  <input type="text" name="qty_male" required class="form-control" placeholder="Male ...">
 					</div>
 					<div class="col-xs-6">
-					  <input type="text" name="qty_female" class="form-control" placeholder="Female ...">
+					  <input type="text" name="qty_female" required class="form-control" placeholder="Female ...">
 					</div>
 				  </div>
                   </div>
@@ -110,14 +110,14 @@
                   <label for="inputPassword3" class="col-sm-3 control-label">Facilities</label>
 
                   <div class="col-sm-5">
-                    <textarea name="facilities" class="form-control" rows="3" placeholder="Input facilities ..."></textarea>
+                    <textarea name="facilities" required class="form-control" rows="3" placeholder="Input facilities ..."></textarea>
                   </div>
                 </div>
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Price</label>
 
                   <div class="col-sm-5">
-                    <input type="text" name="price" class="form-control" id="inputEmail3" placeholder="Input price ...">
+                    <input type="text" name="price" required class="form-control" id="inputEmail3" placeholder="Input price ...">
                   </div>
                 </div>
               </div>

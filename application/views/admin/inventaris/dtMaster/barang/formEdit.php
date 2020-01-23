@@ -28,7 +28,7 @@
             <!-- /.box-header -->
             <!-- form start -->
 			<?php foreach ($barang  as $data): ?>
-            <form class="form-horizontal">
+            <form action="<?php echo base_url('admin/upadteBarang');?>" method="post" class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
                     <p class="col-sm-2 text-left">Kode Barang </p>
@@ -74,7 +74,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Batal</button>
+                <a href="<?php echo base_url('admin/dtBarang');?>" class="btn btn-default">Batal</a>
                 <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>

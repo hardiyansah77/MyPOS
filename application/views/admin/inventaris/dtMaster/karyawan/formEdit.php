@@ -28,7 +28,7 @@
             <!-- /.box-header -->
             <!-- form start -->
 			<?php foreach ($karyawan  as $data): ?>
-            <form class="form-horizontal">
+            <form action="<?php echo base_url('admin/upadteKaryawan');?>" method="post" class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
                     <p class="col-sm-2 text-left">NIK </p>
@@ -50,10 +50,11 @@
                     <p class="col-sm-2 text-left">Jenis Kelamin </p>
 
                     <div class="col-sm-10">
-                    <select name="jenis" class="form-control" >
-                        <option value="">- Pilih Jenis -</option>
-                        <option value="L" <?php echo set_select('jenis','L'); ?> >Laki Laki</option>
-                        <option value="P" <?php echo set_select('jenis','P'); ?>>Perempuan</option>
+                    <select name="jk" class="form-control" >
+                        <option value="<?php echo $data->jk ?>"><?php if($data->jk == "L") {
+																	echo "Laki-laki";}else{ echo "Perempuan";}  ?></option>
+                        <option value="L">Laki Laki</option>
+                        <option value="P">Perempuan</option>
                     </select>   
                     </div>
                 </div>
@@ -77,7 +78,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Batal</button>
+                <a href="<?php echo base_url('admin/dtKaryawan');?>" class="btn btn-default">Batal</a>
                 <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>

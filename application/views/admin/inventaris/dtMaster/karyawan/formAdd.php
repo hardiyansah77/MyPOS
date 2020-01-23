@@ -27,14 +27,14 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal">
+            <form action="<?php echo base_url('admin/actionAddKaryawan');?>" method="post" class="form-horizontal">
               <div class="box-body">
 			  
                 <div class="form-group">
                     <p class="col-sm-2 text-left">NIK </p>
 
                     <div class="col-sm-10">
-                        <input type="text" name="nik" class="form-control" autocomplete="off" placeholder="NIK" value="<?php echo set_value('nik'); ?>">
+                        <input type="text" name="nik" class="form-control" autocomplete="off" placeholder="NIK">
                     </div>
                 </div>
 				
@@ -42,7 +42,7 @@
                     <p class="col-sm-2 text-left">Nama </p>
 
                     <div class="col-sm-10">
-                        <input type="text" name="nama" class="form-control" autocomplete="off" placeholder="Nama" value="<?php echo set_value('nama'); ?>">
+                        <input type="text" name="nama" class="form-control" autocomplete="off" placeholder="Nama" >
                     </div>
                 </div>
 				
@@ -50,10 +50,10 @@
                     <p class="col-sm-2 text-left">Jenis Kelamin </p>
 
                     <div class="col-sm-10">
-                    <select name="jenis" class="form-control" >
+                    <select name="jk" class="form-control" >
                         <option value="">- Pilih Jenis -</option>
-                        <option value="L" <?php echo set_select('jenis','L'); ?> >Laki Laki</option>
-                        <option value="P" <?php echo set_select('jenis','P'); ?>>Perempuan</option>
+                        <option value="L">Laki Laki</option>
+                        <option value="P">Perempuan</option>
                     </select>   
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <p class="col-sm-2 text-left">Tanggal Lahir </p>
 
                     <div class="col-sm-10">
-                        <input type="text" name="tgl_lahir" class="form-control" autocomplete="off" placeholder="Tanggal Lahir" id="tanggal"  value="<?php echo set_value('tgl_lahir'); ?>">
+                        <input type="date" name="ttl" class="form-control" autocomplete="off" placeholder="Tanggal Lahir" id="tanggal"  value="<?php echo set_value('tgl_lahir'); ?>">
                     </div>
                 </div>
 				
@@ -77,7 +77,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Batal</button>
+                <a href="<?php echo base_url('admin/dtKaryawan');?>" class="btn btn-default">Batal</a>
                 <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>

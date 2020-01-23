@@ -58,6 +58,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>NIS</th>
                   <th>Name</th>
                   <th>Parent/Guardian of</th>
                   <th>Class</th>
@@ -71,6 +72,7 @@
                 <?php $no=1; foreach ($dtDormitoryTransaction  as $r): ?>
                 <tr>
                   <td><a href="#"><?=$r['siswa_nopin'] ?></a></td>
+                  <td><?=$r['nama'] ?></td>
                   <td><?=$r['parent'] ?></td>
                   <td><?=$r['class'] ?></td>
                   <td><?=$r['type'] ?></td>

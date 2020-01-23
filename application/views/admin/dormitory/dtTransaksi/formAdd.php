@@ -47,6 +47,7 @@
                   <div class="col-sm-5">
                     <select class="form-control" name="siswa_nopin" required></select>
 					<input type="hidden" id ="gender" readonly name="gender">
+					<input type="hidden" id ="nama" readonly name="nama">
                   </div>
                 </div>
 				<div class="form-group">
@@ -397,6 +398,7 @@ $( "select[name='siswa_nopin']" ).change(function () {
                 $('#parent').val(data.parent)
                 $('#class').val(data.class)
                 $('#gender').val(data.gender)
+                $('#nama').val(data.nama)
             }
         });
 

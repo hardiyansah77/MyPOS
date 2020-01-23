@@ -50,7 +50,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Batal</button>
+                <a href="<?php echo base_url('admin/dtJenisBarang');?>" class="btn btn-default">Batal</a>
                 <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>
