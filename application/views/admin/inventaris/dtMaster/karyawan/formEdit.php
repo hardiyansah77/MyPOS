@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        General Form Elements
-        <small>Preview</small>
+       Forms Edit Data Karyawan
+        <small> </small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">Forms Edit</a></li>
+        <li class="active">Data Karyawan</li>
       </ol>
     </section>
 
@@ -23,45 +23,68 @@
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Horizontal Form</h3>
+              <h3 class="box-title">Masukkan Data Karyawan</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal">
+			<?php foreach ($karyawan  as $data): ?>
+            <form action="<?php echo base_url('admin/upadteKaryawan');?>" method="post" class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                    <p class="col-sm-2 text-left">NIK </p>
 
-                  <div class="col-sm-5">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
-
-                  <div class="col-sm-5">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-offset-3 col-sm-10">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> Remember me
-                      </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="nik"  class="form-control" autocomplete="off" placeholder="NIK" value="<?php echo $data->nik ?>" readonly="readonly">
                     </div>
-                  </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="col-sm-2 text-left">Nama </p>
+
+                    <div class="col-sm-10">
+                        <input type="text" name="nama"  class="form-control" autocomplete="off" placeholder="Nama" value="<?php echo $data->nama ?>">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="col-sm-2 text-left">Jenis Kelamin </p>
+
+                    <div class="col-sm-10">
+                    <select name="jk" class="form-control" >
+                        <option value="<?php echo $data->jk ?>"><?php if($data->jk == "L") {
+																	echo "Laki-laki";}else{ echo "Perempuan";}  ?></option>
+                        <option value="L">Laki Laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>   
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="col-sm-2 text-left">Tanggal Lahir </p>
+
+                    <div class="col-sm-10">
+                        <input type="date" name="ttl" class="form-control" autocomplete="off" placeholder="Tanggal Lahir" id="tanggal"  value="<?php echo $data->ttl ?>">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="col-sm-2 text-left">Bagian </p>
+
+                    <div class="col-sm-10">
+                        <input type="text" name="bagian"  class="form-control" autocomplete="off" placeholder="Bagian" value="<?php echo $data->bagian ?>">
+                    </div>
                 </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-info">Sign in</button>
+                <a href="<?php echo base_url('admin/dtKaryawan');?>" class="btn btn-default">Batal</a>
+                <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>
               <!-- /.box-footer -->
             </form>
+			<?php endforeach ?>
           </div>
           <!-- /.box -->
           <!-- general form elements disabled -->

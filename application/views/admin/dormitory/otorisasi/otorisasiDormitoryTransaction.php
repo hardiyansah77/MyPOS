@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Tables
-        <small>advanced tables</small>
+        Otorisasi Transaction
+        <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">Dormitory</a></li>
+        <li class="active">Otorisasi Transaction</li>
       </ol>
     </section>
 
@@ -20,10 +20,24 @@
           <!-- /.box -->
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+              <h3 class="box-title">Otorisasi Dormitory Transaction</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+			<?php 
+			if(isset($_GET['message'])){
+			  $message = $_GET['message'];
+			  if($message == "successfully"){
+				echo '<div class="alert alert-block alert-success">
+				  <button type="button" class="close" data-dismiss="alert">
+					<i class="ace-icon fa fa-times"></i>
+				  </button>
+					<i class="ace-icon fa fa-check green"></i>
+					  Otoritation was successfully.
+				</div>';
+			  }
+			}
+		  ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -39,7 +53,7 @@
                 <tbody>
                 <?php $no=1; foreach ($otorisasiDormitoryTransaction  as $r): ?>
                 <tr>
-                  <td><center><a href="<?php echo base_url();?>coba/detailTransaction/<?=$r['id_transaction'] ?>"><?=$r['siswa_nopin'] ?></a></center>
+                  <td><center><a href="<?php echo base_url();?>admin/detailTransaction/<?=$r['id_transaction'] ?>"><?=$r['siswa_nopin'] ?></a></center>
                               <input type="hidden" name="id_transaction" value="<?=$r['id_transaction'] ?>"/></td>
                   <td><?=$r['parent'] ?></td>
                   <td><?=$r['class'] ?></td>

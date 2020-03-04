@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        General Form Elements
-        <small>Preview</small>
+        Form Edit
+        <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">Dormitory Transaction</a></li>
+        <li class="active">Form Edit</li>
       </ol>
     </section>
 
@@ -23,7 +23,7 @@
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Horizontal Form</h3>
+              <h3 class="box-title">Data Dormitory Transaction</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -50,6 +50,7 @@
 						<?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><option value="<?=$r->siswa_nopin ?>"><?=$r->siswa_nopin ?></option><?php endforeach ?>
 					</select>
 					<input type="hidden" id ="gender" readonly name="gender">
+					<input type="hidden" id ="nama" readonly name="nama">
                   </div>
                 </div>
 				<div class="form-group">
@@ -69,6 +70,13 @@
 					<?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><input type="text" name="class" value="<?=$r->class ?>" id ="class" class="form-control" placeholder="Class ..." readonly><?php endforeach ?>
                   </div>
                 </div>
+        <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Room Number</label>
+
+                  <div class="col-sm-5">
+                    <?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><input type="text" name="room_number" value="<?=$r->room_number ?>" class="form-control" id="inputEmail3" placeholder="Input room number ..."><?php endforeach ?>
+                  </div>
+                </div>        
 				<div class="form-group">
                   <label for="inputPassword3" class="col-sm-3 control-label">Floor</label>
 
@@ -92,13 +100,6 @@
                   </div>
                 </div>
 				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Room Number</label>
-
-                  <div class="col-sm-5">
-                    <?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><input type="text" name="room_number" value="<?=$r->room_number ?>" class="form-control" id="inputEmail3" placeholder="Input room number ..."><?php endforeach ?>
-                  </div>
-                </div>
-				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Price</label>
 
                   <div class="col-sm-5">
@@ -109,8 +110,8 @@
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="submit" class="btn btn-info">Sign in</button>
+                <a href="<?php echo base_url('admin/dtDormitoryTransaction');?>" type="submit" class="btn btn-default">Batal</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>
               <!-- /.box-footer -->

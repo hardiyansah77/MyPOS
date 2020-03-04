@@ -1,15 +1,15 @@
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+     <section class="content-header">
       <h1>
-        Data Tables
-        <small>advanced tables</small>
+        Data Mutasi
+        <small> </small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">Inventaris Kantor</a></li>
+        <li class="active">Data Mutasi</li>
       </ol>
     </section>
 
@@ -20,33 +20,65 @@
           <!-- /.box -->
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+              <h3 class="box-title">Data Mutasi</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
 			<a href="<?php echo base_url('admin/formAddMutasi');?>" class="btn btn-white btn-info btn-bold"><i class="fa glyphicon-plus "></i> Add New Data</a><br><br>
-              <table id="example1" class="table table-bordered table-striped">
+              <?php 
+				if(isset($_GET['message'])){
+					$message = $_GET['message'];
+					if($message == "input"){
+						echo '<div class="alert alert-block alert-success">
+							<button type="button" class="close" data-dismiss="alert">
+								<i class="ace-icon fa fa-times"></i>
+							</button>
+								<i class="ace-icon fa fa-check green"></i>
+									Data successfully inputted.
+						</div>';
+					}else if($message == "update"){
+						echo '<div class="alert alert-block alert-success">
+							<button type="button" class="close" data-dismiss="alert">
+								<i class="ace-icon fa fa-times"></i>
+							</button>
+								<i class="ace-icon fa fa-check green"></i>
+									Data successfully updated.
+						</div>';
+					}else if($message == "delete"){
+						echo '<div class="alert alert-block alert-success">
+								<button type="button" class="close" data-dismiss="alert">
+									<i class="ace-icon fa fa-times"></i>
+								</button>
+									<i class="ace-icon fa fa-check green"></i>
+										Data successfully deleted.
+							</div>';
+					}
+				}
+			?>
+			  <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                  <th>No.</th>
+                  <th>No Mutasi</th>
+                  <th>Kode Ruang</th>
+                  <th>Nama Barang</th>
+                  <th>Jumlah</th>
+                  <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
+				<?php $no=1; foreach ($dtMutasi  as $r): ?>
                 <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
+                  <td><?php echo $no++; ?></td>
+                  <td><?=$r['no_mutasi'] ?></td>
+                  <td> <?=$r['kd_ruang'] ?></td>
+                  <td> <?=$r['nama_barang'] ?></td>
+                  <td> <?=$r['jumlah'] ?></td>
+        
                   <td>
 				  <center>
 					<div class="hidden-sm hidden-xs action-buttons">
-						<a class="green" href="<?=base_url();?>admin/formEditMutasi">
+						<a class="green" href="<?=base_url();?>admin/formEditMutasi/<?=$r['no_mutasi'] ?>">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
 						<a class="red" href="#">
@@ -55,6 +87,7 @@
 					</div></center>
 				  </td>
                 </tr>
+				<?php endforeach ?>
                 </tbody>
               </table>
             </div>

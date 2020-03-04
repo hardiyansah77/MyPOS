@@ -1,15 +1,15 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+   <section class="content-header">
       <h1>
-        General Form Elements
-        <small>Preview</small>
+        Forms Add Data Mutasi
+        <small> </small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">Forms Add</a></li>
+        <li class="active">Data Mutasi</li>
       </ol>
     </section>
 
@@ -23,62 +23,52 @@
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Horizontal Form</h3>
+              <h3 class="box-title">Masukkan Data Mutasi</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal">
               <div class="box-body">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">No Mutasi </label>
+                 <div class="form-group">
+                    <p class="col-sm-2 text-left">No Mutasi </p>
 
-                    <div class="col-sm-5">
+                    <div class="col-sm-10">
                         <input type="text" name="no_mutasi" class="form-control" autocomplete="off" placeholder="No Mutasi" value="<?php echo set_value('no_mutasi'); ?>">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Kode Ruang </label>
+				<div class="form-group">
+                    <p class="col-sm-2 text-left">Kode Ruang </p>
 
-                    <div class="col-sm-5">
+                    <div class="col-sm-10">
                         <input type="text" name="kd_ruang" class="form-control" autocomplete="off" placeholder="Kode Ruang" value="<?php echo set_value('kd_ruang'); ?>">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Jumlah </label>
+				<div class="form-group">
+                  <p class="col-sm-2 text-left">Nama Barang </p>
 
-                     <div class="col-sm-5">
+                  <div class="col-sm-10">
+                    <select class="form-control">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                  </div>
+                </div>
+				<div class="form-group">
+                    <p class="col-sm-2 text-left">Jumlah </p>
+
+                     <div class="col-sm-10">
                         <input type="text" name="jumlah" class="form-control" autocomplete="off" placeholder="Jumlah" value="<?php echo set_value('jumlah'); ?>">
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Gambar</label>
-
-                    <div class="col-sm-5">
-                        <input type="file" name="userfile" class="form-control btn-file"  value="<?php echo set_value('userfile'); ?>">
-                    </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
-
-                  <div class="col-sm-5">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-offset-3 col-sm-10">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> Remember me
-                      </label>
-                    </div>
-                  </div>
                 </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-info">Sign in</button>
+                <button type="submit" class="btn btn-default">Batal</button>
+                <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>
               <!-- /.box-footer -->

@@ -73,14 +73,23 @@ class Model extends CI_Model {
 	function selectfloor($select = '',$where = ''){
 		return $this->db->query("select distinct($select) from $where;");
 	}
+	function selectsiswa($select = '',$where = ''){
+		return $this->db->query("select distinct($select) from $where;");
+	}
 	function selectdata0($where = '',$select = '*'){
 		return $this->db->query("select $select from $where;");
 	}
 	function selectdata1($where = '',$select = '*'){
 		return $this->db2->query("select $select from $where;");
 	}
+	function selectdata5($where = '',$select = '*'){
+		return $this->db->query("select $select from $where;");
+	}
 	function selectdata2($select = '*',$where = ''){
 		return $this->db2->query("select $select from $where;");
+	}
+	function selectdata3($select = '*',$where = ''){
+		return $this->db->query("select $select from $where;");
 	}
 	function selectcount($field = '',$where = ''){
 		$query = $this->db->query("select count($field) from $where;");
@@ -117,18 +126,30 @@ class Model extends CI_Model {
         return $query->result();
     }
 
-	function searchdate($filterSearch1, $filterSearch2, $class, $room){
+	function searchdate($filterSearch1, $filterSearch2, $name, $class, $room){
 	$query = "SELECT * FROM tbl_dormitory_transaction WHERE DATE_FORMAT(created_date, '%Y-%m-%d') BETWEEN DATE_FORMAT('".$filterSearch1."', '%Y-%m-%d') AND DATE_FORMAT('".$filterSearch2."', '%Y-%m-%d') and state = 1";
 	$query1 = "SELECT sum(price) as price FROM tbl_dormitory_transaction WHERE DATE_FORMAT(created_date, '%Y-%m-%d') BETWEEN DATE_FORMAT('".$filterSearch1."', '%Y-%m-%d') AND DATE_FORMAT('".$filterSearch2."', '%Y-%m-%d') and state = 1";
-	if($class && $room == null){
+	if($name == null && $class && $room == null){
 		$query .=" and class ='".$class."'";
 		$query1 .=" and class ='".$class."'";
-	}else if($class == null && $room){
+	}else if($name && $class == null && $room == null){
+		$query .=" and nama ='".$name."'";
+		$query1 .=" and nama ='".$name."'";
+	}else if($name == null && $class == null && $room){
 		$query .=" and room_number ='".$room."'";
 		$query1 .=" and room_number ='".$room."'";
-	}else if($class && $room){
+	}else if($name && $class && $room == null){
+		$query .=" and nama ='".$name."' and class ='".$class."'";
+		$query1 .=" and nama ='".$name."' and class ='".$class."'";
+	}else if($name && $class == null && $room ){
+		$query .=" and nama ='".$name."' and room_number ='".$room."'";
+		$query1 .=" and nama ='".$name."' and room_number ='".$room."'";
+	}else if($name == null && $class && $room ){
 		$query .=" and class ='".$class."' and room_number ='".$room."'";
 		$query1 .=" and class ='".$class."' and room_number ='".$room."'";
+	}else if($name && $class && $room){
+		$query .=" and nama ='".$name."' and class ='".$class."' and room_number ='".$room."'";
+		$query1 .=" and nama ='".$name."' and class ='".$class."' and room_number ='".$room."'";
 	}else{
 		$query;
 		$query1;
@@ -140,6 +161,7 @@ class Model extends CI_Model {
 	
     return $data;
     }
+
 	
 	/*function sumPrice($filterSearch1, $filterSearch2, $class, $room){
     $query = $this->db->query("SELECT sum(price) FROM tbl_dormitory_transaction WHERE DATE_FORMAT(created_date, '%Y-%m-%d') BETWEEN DATE_FORMAT('".$filterSearch1."', '%Y-%m-%d') AND DATE_FORMAT('".$filterSearch2."', '%Y-%m-%d') and state = 1");
@@ -158,6 +180,13 @@ class Model extends CI_Model {
 	function sum(){
     $query = $this->db->query("SELECT sum(price) FROM tbl_dormitory_transaction WHERE  state = 1");
 	return $query->row();
+    }
+    function sum1(){
+    $query = $this->db->query("SELECT sum(price) FROM tbl_dormitory_transaction WHERE  status = 1");
+	return $query->row();
+    }
+    function selectKamar($select = '',$where = ''){
+    	return $this->db->query("SELECT `room_number` FROM `kamar` WHERE `flag` = 'N'");
     }
 
 }

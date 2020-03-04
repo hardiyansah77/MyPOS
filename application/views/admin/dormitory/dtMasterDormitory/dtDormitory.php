@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Tables
-        <small>advanced tables</small>
+        Data Dormitory
+        <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">Dormitory</a></li>
+        <li class="active">Data Dormitory</li>
       </ol>
     </section>
 
@@ -20,7 +20,7 @@
           <!-- /.box -->
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+              <h3 class="box-title">Data Dormitory</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -82,7 +82,7 @@
 						<a class="green" href="<?=base_url();?>admin/formEditDormitory/<?=$r['id'] ?>">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
-						<a class="red" href="#">
+						<a class="red" href="<?php echo base_url();?>admin/deleteDataDormitory/<?=$r['id'] ?>">
 							<i class="ace-icon fa fa-trash-o bigger-130"></i>
 						</a>
 					</div></center>

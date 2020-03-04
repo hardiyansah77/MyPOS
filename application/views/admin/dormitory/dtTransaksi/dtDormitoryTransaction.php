@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Tables
-        <small>advanced tables</small>
+        Dormitory Transaction
+        <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">Dormitory</a></li>
+        <li class="active"> Dormitory Transaction</li>
       </ol>
     </section>
 
@@ -20,7 +20,7 @@
           <!-- /.box -->
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+              <h3 class="box-title">Data Dormitory Transaction</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -58,11 +58,13 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>NIS</th>
                   <th>Name</th>
                   <th>Parent/Guardian of</th>
                   <th>Class</th>
                   <th>Room Type</th>
                   <th>Room number</th>
+                  <th>facilities</th>
                   <th>Price</th>
                   <th></th>
                 </tr>
@@ -71,10 +73,12 @@
                 <?php $no=1; foreach ($dtDormitoryTransaction  as $r): ?>
                 <tr>
                   <td><a href="#"><?=$r['siswa_nopin'] ?></a></td>
+                  <td><?=$r['nama'] ?></td>
                   <td><?=$r['parent'] ?></td>
                   <td><?=$r['class'] ?></td>
                   <td><?=$r['type'] ?></td>
                   <td><?=$r['floor'] ?><?=$r['room_number'] ?></td>
+                  <td><?=$r['facilities']?></td>
                   <td>Rp.<?= number_format($r['price']) ?></td>
                   <td>
 				  <center>
@@ -82,7 +86,7 @@
 						<a class="green" href="<?=base_url();?>admin/formEditDormitoryTransaction/<?=$r['id_transaction'] ?>">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
-						<a class="red" href="<?=base_url();?>admin/deleteDormitoryTransaction/<?=$r['id_transaction'] ?>">
+						<a class="red" href="<?php echo base_url();?>admin/deleteDormitoryTransaction/<?=$r['id_transaction'] ?>">
 							<i class="ace-icon fa fa-trash-o bigger-130"></i>
 						</a>
 					</div></center>
