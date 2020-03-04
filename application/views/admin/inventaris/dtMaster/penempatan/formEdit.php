@@ -28,27 +28,32 @@
             <!-- /.box-header -->
             <!-- form start -->
 			<?php foreach ($penempatan  as $data): ?>
-            <form class="form-horizontal">
+             <form action="<?php echo base_url('admin/updatePenempatan');?>" method="post" class="form-horizontal">
               <div class="box-body">
+			  
+			  <div class="form-group">
+                    <p class="col-sm-2 text-left">Nama Barang </p>
+
+                    <div class="col-sm-10">
+                        <input type="text" name="nama_barang" class="form-control" autocomplete="off" placeholder="Nama Barang" value="<?php echo $data->nama_barang ?>">
+						<input type="hidden" name="no" class="form-control" autocomplete="off" placeholder="no" value="<?php echo $data->no ?>">
+				
+					</div>
+                </div>
+			 
                <div class="form-group">
                     <p class="col-sm-2 text-left">Nama Ruang </p>
 
                     <div class="col-sm-10">
                         <input type="text" name="nama_ruang" class="form-control" autocomplete="off" placeholder="Nama Ruang" value="<?php echo $data->nama_ruang ?>">
-                    </div>
-                </div>
-				<div class="form-group">
-                    <p class="col-sm-2 text-left">Nama Barang </p>
-
-                    <div class="col-sm-10">
-                        <input type="text" name="nama_barang" class="form-control" autocomplete="off" placeholder="Nama Barang" value="<?php echo $data->nama_barang ?>">
-                    </div>
-                </div>
+						</div> 
+				</div>
+				
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Batal</button>
+                 <a href="<?php echo base_url('admin/dtPenempatan');?>" class="btn btn-default">Batal</a>
                 <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>
