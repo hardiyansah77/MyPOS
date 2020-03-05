@@ -27,41 +27,49 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="<?php echo base_url('admin/actionAddPenempatan');?>" method="post" class="form-horizontal">
+            <form class="form-horizontal">
               <div class="box-body">
-             	
-				<div class="form-group">
-                  <p class="col-sm-2 text-left">Nama Barang </p>
+                <div class="form-group">
+                    <p class="col-sm-2 text-left">No</p>
 
-                  <div class="col-sm-10" >
-				  <input type="hidden" name="no" class="form-control">
-                   <select name="nama_barang" id="nama_barang" class="form-control">
-                    <option> -- Select Nama Barang -- </option>
-                    <?php foreach ($dtBarang  as $r): ?>
-						<option value="<?=$r['nama_barang'] ?>"><?=$r['nama_barang'] ?></option>
-					<?php endforeach ?>
-                  </select>	
-                  </div>
+                    <div class="col-sm-10">
+                        <input type="text" name="no" class="form-control" autocomplete="off" placeholder="Nomer" value="<?php echo set_value('no'); ?>">
+                    </div>
                 </div>
-				
-				<div class="form-group">
+
+                <div class="form-group">
                   <p class="col-sm-2 text-left">Nama Ruang </p>
 
                   <div class="col-sm-10">
-                    <select name="nama_ruang" id="nama_ruang" class="form-control">
-                    <option> -- Select Nama Ruang -- </option>
-                    <?php foreach ($dtLokasi  as $r): ?>
-						<option value="<?=$r['nama_ruang'] ?>"><?=$r['nama_ruang'] ?></option>
-					<?php endforeach ?>
-                  </select>	
+                    <select class="form-control">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
                   </div>
                 </div>   
+				
+				<div class="form-group">
+                  <p class="col-sm-2 text-left">Nama Barang </p>
+
+                  <div class="col-sm-10">
+                    <select class="form-control">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                  </div>
+                </div>
 				
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-              <a href="<?php echo base_url('admin/dtPenempatan');?>" class="btn btn-default">Batal</a>
+                <button type="submit" class="btn btn-default">Batal</button>
                 <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>

@@ -47,8 +47,8 @@
                 <div class="form-group">
 				 <p class="col-sm-2 text-left">No STNK </p>
 				 
-                <div class="col-sm-10">
-    <input type="text" name="no_stnk" class="form-control" autocomplete="off" placeholder="NO STNK" value="<?php echo $data->no_stnk ?>" readonly="readonly">
+                    <div class="col-sm-10">
+                        <input type="text" name="no_stnk" class="form-control" autocomplete="off" placeholder="No STNK" value="<?php echo $data->no_stnk ?>" readonly="readonly">
                     </div>
                 </div>
 
@@ -56,7 +56,7 @@
                     <p class="col-sm-2 text-left">Tipe Bus </p>
 
                     <div class="col-sm-10">
-                <input type="text" name="tipe_bus" class="form-control" autocomplete="off" placeholder="Tipe Bus" value="<?php echo $data->tipe_bus ?>"">
+                        <input type="text" name="tipe_bus" class="form-control" autocomplete="off" placeholder="Tipe Bus" value="<?php echo $data->tipe_bus ?>">
                     </div>
                 </div>
 				

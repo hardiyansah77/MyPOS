@@ -353,7 +353,9 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('admin/dtDormitory');?>"><i class="fa fa-circle-o"></i> Data Dormitory</a></li>
+            <li><a href="<?php echo base_url('admin/dtKamarLengkap');?>"><i class="fa fa-circle-o"></i> Data Kamar</a></li>
             <li><a href="<?php echo base_url('admin/dtDormitoryTransaction');?>"><i class="fa fa-circle-o"></i> Dormitory Transaction</a></li>
+            <li><a href="<?php echo base_url('admin/dtCheckout');?>"><i class="fa fa-circle-o"></i> Checkout</a></li>
             <li><a href="<?php echo base_url('admin/laporanDormitoryTransaction');?>"><i class="fa fa-circle-o"></i> Laporan Transaction</a></li>
             <li><a href="<?php echo base_url('admin/otorisasiDormitoryTransaction');?>"><i class="fa fa-circle-o"></i> Otorisasi Transaction</a></li>
           </ul>
@@ -387,8 +389,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('admin/dtTransaksiPeminjaman');?>"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
-            <li><a href="<?php echo base_url('admin/dtTransaksiPengembalian');?>"><i class="fa fa-circle-o"></i> pengembalian</a></li>
-            <!--<li><a href="<?php echo base_url('admin/dtTransaksiPencarian');?>"><i class="fa fa-circle-o"></i> Pencarian</a></li> -->
+            <!--<li><a href="<?php echo base_url('admin/pengembalian');?>"><i class="fa fa-circle-o"></i> pengembalian</a></li>-->
           </ul>
         </li>
 		<li class="treeview">
@@ -401,10 +402,10 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('admin/laporanTransaksiInventaris');?>"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
-            <li><a href="<?php echo base_url('admin/laporanTransaksiPengembalian');?>"><i class="fa fa-circle-o"></i> pengembalian</a></li>
+            <!--<li><a href="<?php echo base_url('admin/pengembalian');?>"><i class="fa fa-circle-o"></i> pengembalian</a></li>-->
           </ul>
-		  </li>
-		  <li class="treeview">
+          </li>
+          <li class="treeview">
           <a href="#">
             <i class="fa fa-fw fa-bus"></i>
             <span>Transaksi Bus</span>
@@ -413,10 +414,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            <li><a href="<?php echo base_url('admin/dtBus');?>"><i class="fa fa-circle-o"></i> Data Bus</a></li>
+            <li><a href="<?php echo base_url('admin/dtHarga');?>"><i class="fa fa-circle-o"></i> Daftar Harga</a></li>
             <li><a href="<?php echo base_url('admin/dtTransaksiBus');?>"><i class="fa fa-circle-o"></i> Data Transaksi Bus</a></li>
-            <li><a href="<?php echo base_url('admin/dtBus');?>"><i class="fa fa-circle-o"></i> Data Bus</a></li>-->
           </ul>
-		  
 		  <?php
 			$dtmenu = $this->model->selectmenu('SELECT 
 										SE_GrpProgram.grp_program_code,

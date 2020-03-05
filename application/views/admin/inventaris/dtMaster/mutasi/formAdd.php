@@ -27,7 +27,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-           <form action="<?php echo base_url('admin/actionAddMutasi');?>" method="post" class="form-horizontal">
+            <form class="form-horizontal">
               <div class="box-body">
                  <div class="form-group">
                     <p class="col-sm-2 text-left">No Mutasi </p>
@@ -40,24 +40,20 @@
                     <p class="col-sm-2 text-left">Kode Ruang </p>
 
                     <div class="col-sm-10">
-                        <select name="kd_ruang" id="kd_ruang" class="form-control">
-                    <option> -- Select kode Ruang -- </option>
-                    <?php foreach ($dtLokasi  as $r): ?>
-						<option value="<?=$r['kode_ruang'] ?>"><?=$r['kode_ruang'] ?></option>
-					<?php endforeach ?>
-                  </select>	
+                        <input type="text" name="kd_ruang" class="form-control" autocomplete="off" placeholder="Kode Ruang" value="<?php echo set_value('kd_ruang'); ?>">
                     </div>
                 </div>
 				<div class="form-group">
                   <p class="col-sm-2 text-left">Nama Barang </p>
 
-                  <div class="col-sm-10" >
-                   <select name="nama_barang" id="nama_barang" class="form-control">
-                    <option> -- Select kode barang -- </option>
-                    <?php foreach ($dtBarang  as $r): ?>
-						<option value="<?=$r['nama_barang'] ?>"><?=$r['nama_barang'] ?></option>
-					<?php endforeach ?>
-                  </select>	
+                  <div class="col-sm-10">
+                    <select class="form-control">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
                   </div>
                 </div>
 				<div class="form-group">
@@ -71,7 +67,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-               <a href="<?php echo base_url('admin/dtMutasi');?>" class="btn btn-default">Batal</a>
+                <button type="submit" class="btn btn-default">Batal</button>
                 <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>

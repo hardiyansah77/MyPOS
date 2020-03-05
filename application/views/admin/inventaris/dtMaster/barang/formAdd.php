@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<!-- Bootstrap 3.3.7 -->
-<link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
-<!-- jQuery 3 -->
-<link rel="stylesheet" href="../../bower_components/jquery/dist/jquery.min.js">
-<!-- FastClick -->
-<link rel="stylesheet" href="../../bower_components/fastclick/lib/fastclick.js">
-<!-- AdminLTE App -->
-<link rel="stylesheet" href="../../dist/js/adminlte.min.js">
-<!-- AdminLTE for demo purposes -->
-<link rel="stylesheet" href="../../dist/js/demo.js">
-</head>
-
-
-
-<!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -71,19 +54,6 @@
                         <input type="text" name="jenis_barang" class="form-control" autocomplete="off" placeholder="Jenis Barang" value="<?php echo set_value('jenis_barang'); ?>">
                     </div>
                 </div>
-				
-				<div class="form-group">
-                    <p class="col-sm-2 text-left">Nama Ruang </p>
-
-                    <div class="col-sm-10">
-                        <select name="ruang" id="ruang" class="form-control">
-                    <option> -- Select Nama Ruang -- </option>
-                    <?php foreach ($dtLokasi  as $r): ?>
-						<option value="<?=$r['nama_ruang'] ?>"><?=$r['nama_ruang'] ?></option>
-					<?php endforeach ?>
-                  </select>	
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <p class="col-sm-2 text-left">Jumlah </p>
@@ -93,13 +63,13 @@
                     </div>
                 </div>
 
-           <div class="form-group">
-                    <p class="col-sm-2 text-left">Keterangan</p>
+                <div class="form-group">
+                    <p class="col-sm-2 text-left">Keterangan </p>
 
-                     <div class="col-sm-10">
-                        <input type="text" name="keterangan" class="form-control" autocomplete="off" placeholder="keterangan" value="<?php echo set_value('keterangan'); ?>">
+                    <div class="col-sm-10">
+                        <textarea name="keterangan"><?php echo set_value('keterangan'); ?></textarea>
                     </div>
-                </div>
+                </div> 
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
@@ -336,5 +306,5 @@
 <script src="<?php echo base_url();?>assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets/dist/js/demo.js"></script>
-
+</body>
 </html>

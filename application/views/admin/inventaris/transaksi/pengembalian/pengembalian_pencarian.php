@@ -14,7 +14,7 @@
         <td><?php echo $row->id_transaksi;?></td>
         <td><?php echo $row->nik;?></td>
         <td><?php echo $row->tanggal_pinjam;?></td>
-        <td><a href="#" class="tambahkan" id_transaksi="<?php echo $row->id_transaksi;?>">
+        <td><a href="#" class="tambahkan" no_transaksi="<?php echo $row->id_transaksi;?>">
             <i class="glyphicon glyphicon-plus"></i>
         </a></td>
     </tr>
