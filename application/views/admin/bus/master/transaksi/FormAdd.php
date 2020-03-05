@@ -29,6 +29,7 @@
             <!-- form start -->
             <form action="<?php echo base_url('admin/actionAddTransaksiBus');?>" method="post" class="form-horizontal">
               <div class="box-body">
+        <h4 class="box-title">Data 1</h4>
 				<div class="form-group">
                   <label for="inputPassword3" class="col-sm-3 control-label">Level</label>
 
@@ -41,6 +42,7 @@
                   </select>
                   </div>
                 </div>
+
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Name</label>
 
@@ -50,13 +52,15 @@
 					<input type="hidden" id ="nama" readonly name="nama">
                   </div>
                 </div>
+
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Parent / Guardian of</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="parent" id ="parent" class="form-control" placeholder="Parent / Guardian of ..." readonly>
+					<input type="text" name="parent" id ="parent1" class="form-control" placeholder="Parent / Guardian of ..." readonly>
                   </div>
                 </div>
+
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Class</label>
 
@@ -64,11 +68,52 @@
 					<input type="text" name="class" id ="class" class="form-control" placeholder="Class ..." readonly>
                   </div>
                 </div>
+
+                <!-- 1 -->
+        <h4 class="box-title">Data 2</h4>
 				<div class="form-group">
                   <label for="inputPassword3" class="col-sm-3 control-label">Level</label>
 
                   <div class="col-sm-5">
-                    <select name="jenjang" id="jenjang" class="form-control">
+                    <select name="jenjang2" id="jenjang2" class="form-control">
+                    <option> -- Select level -- </option>
+                    <?php foreach ($dtTransaksiBus  as $r): ?>
+						<option value="<?=$r['unit_name'] ?>"><?=$r['unit_name'] ?></option>
+					<?php endforeach ?>
+                  </select>
+                  </div>
+                </div>
+
+				<div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Name</label>
+
+                  <div class="col-sm-5">
+                    <select class="form-control" name="siswa_nopin2" required></select>
+					<input type="hidden" id ="gender2" readonly name="gender2">
+					<input type="hidden" id ="nama2" readonly name="nama2">
+                  </div>
+                </div>
+				<div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Parent / Guardian of</label>
+
+                  <div class="col-sm-5">
+					<input type="text" name="parent2" id ="parent2" class="form-control" placeholder="Parent / Guardian of ..." readonly>
+                  </div>
+                </div>
+				<div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Class</label>
+
+                  <div class="col-sm-5">
+					<input type="text" name="class2" id ="class2" class="form-control" placeholder="Class ..." readonly>
+                  </div>
+                </div>
+                <!-- 2 -->
+        <h4 class="box-title">Data 3</h4>
+				<div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Level</label>
+
+                  <div class="col-sm-5">
+                    <select name="jenjang3" id="jenjang3" class="form-control">
                     <option> -- Select level -- </option>
                     <?php foreach ($dtTransaksiBus  as $r): ?>
 						<option value="<?=$r['unit_name'] ?>"><?=$r['unit_name'] ?></option>
@@ -80,30 +125,32 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Name</label>
 
                   <div class="col-sm-5">
-                    <select class="form-control" name="siswa_nopin" required></select>
-					<input type="hidden" id ="gender" readonly name="gender">
-					<input type="hidden" id ="nama" readonly name="nama">
+                    <select class="form-control" name="siswa_nopin3" required></select>
+					<input type="hidden" id ="gender3" readonly name="gender3">
+					<input type="hidden" id ="nama3" readonly name="nama3">
                   </div>
                 </div>
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Parent / Guardian of</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="parent" id ="parent" class="form-control" placeholder="Parent / Guardian of ..." readonly>
+					<input type="text" name="parent3" id ="parent3" class="form-control" placeholder="Parent / Guardian of ..." readonly>
                   </div>
                 </div>
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Class</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="class" id ="class" class="form-control" placeholder="Class ..." readonly>
+					<input type="text" name="class3" id ="class3" class="form-control" placeholder="Class ..." readonly>
                   </div>
                 </div>
+                <!-- 3 -->
+        <h4 class="box-title">Data 4</h4>
 				<div class="form-group">
                   <label for="inputPassword3" class="col-sm-3 control-label">Level</label>
 
                   <div class="col-sm-5">
-                    <select name="jenjang" id="jenjang" class="form-control">
+                    <select name="jenjang4" id="jenjang4" class="form-control">
                     <option> -- Select level -- </option>
                     <?php foreach ($dtTransaksiBus  as $r): ?>
 						<option value="<?=$r['unit_name'] ?>"><?=$r['unit_name'] ?></option>
@@ -115,30 +162,32 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Name</label>
 
                   <div class="col-sm-5">
-                    <select class="form-control" name="siswa_nopin" required></select>
-					<input type="hidden" id ="gender" readonly name="gender">
-					<input type="hidden" id ="nama" readonly name="nama">
+                    <select class="form-control" name="siswa_nopin4" required></select>
+					<input type="hidden" id ="gender4" readonly name="gender4">
+					<input type="hidden" id ="nama4" readonly name="nama4">
                   </div>
                 </div>
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Parent / Guardian of</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="parent" id ="parent" class="form-control" placeholder="Parent / Guardian of ..." readonly>
+					<input type="text" name="parent4" id ="parent4" class="form-control" placeholder="Parent / Guardian of ..." readonly>
                   </div>
                 </div>
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Class</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="class" id ="class" class="form-control" placeholder="Class ..." readonly>
+					<input type="text" name="class4" id ="class4" class="form-control" placeholder="Class ..." readonly>
                   </div>
                 </div>
+                <!-- 4 -->
+        <h4 class="box-title">Data 5</h4>
 				<div class="form-group">
                   <label for="inputPassword3" class="col-sm-3 control-label">Level</label>
 
                   <div class="col-sm-5">
-                    <select name="jenjang" id="jenjang" class="form-control">
+                    <select name="jenjang5" id="jenjang5" class="form-control">
                     <option> -- Select level -- </option>
                     <?php foreach ($dtTransaksiBus  as $r): ?>
 						<option value="<?=$r['unit_name'] ?>"><?=$r['unit_name'] ?></option>
@@ -150,72 +199,108 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Name</label>
 
                   <div class="col-sm-5">
-                    <select class="form-control" name="siswa_nopin" required></select>
-					<input type="hidden" id ="gender" readonly name="gender">
-					<input type="hidden" id ="nama" readonly name="nama">
+                    <select class="form-control" name="siswa_nopin5" required></select>
+					<input type="hidden" id ="gender5" readonly name="gender5">
+					<input type="hidden" id ="nama5" readonly name="nama5">
                   </div>
                 </div>
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Parent / Guardian of</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="parent" id ="parent" class="form-control" placeholder="Parent / Guardian of ..." readonly>
+					<input type="text" name="parent5" id ="parent5" class="form-control" placeholder="Parent / Guardian of ..." readonly>
                   </div>
                 </div>
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Class</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="class" id ="class" class="form-control" placeholder="Class ..." readonly>
+					<input type="text" name="class5" id ="class5" class="form-control" placeholder="Class ..." readonly>
                   </div>
                 </div>
-				<div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Level</label>
+                <!-- 5 -->
+        <h4 class="box-title">Data Perjalanan</h4>
+        <div class="form-group">
+                    <label class="col-sm-3 control-label">No STNK </label>
 
-                  <div class="col-sm-5">
-                    <select name="jenjang" id="jenjang" class="form-control">
-                    <option> -- Select level -- </option>
-                    <?php foreach ($dtTransaksiBus  as $r): ?>
-						<option value="<?=$r['unit_name'] ?>"><?=$r['unit_name'] ?></option>
-					<?php endforeach ?>
+                    <div class="col-sm-5">
+                        <select name="no_stnk" id="no_stnk" class="form-control">
+                    <option> -- Select Bus -- </option>
+                    <?php foreach ($dtstnk as $r): ?>
+            <option value="<?=$r['no_stnk'] ?>"><?=$r['no_stnk'] ?></option>
+          <?php endforeach ?>
                   </select>
-                  </div>
+                    </div>
                 </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Name</label>
-
-                  <div class="col-sm-5">
-                    <select class="form-control" name="siswa_nopin" required></select>
-					<input type="hidden" id ="gender" readonly name="gender">
-					<input type="hidden" id ="nama" readonly name="nama">
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Parent / Guardian of</label>
-
-                  <div class="col-sm-5">
-					<input type="text" name="parent" id ="parent" class="form-control" placeholder="Parent / Guardian of ..." readonly>
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Class</label>
-
-                  <div class="col-sm-5">
-					<input type="text" name="class" id ="class" class="form-control" placeholder="Class ..." readonly>
-                  </div>
-                </div>
-				<div class="form-group">
+				      <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Tipe Bus</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="tipe_bus" id ="tipe_bus" class="form-control" placeholder="Tipe Bus" >
+                  <input type="text" name="tipe_bus" id ="tipebus" class="form-control" placeholder="Tipe Bus" readonly>
                   </div>
                 </div>
-				<div class="form-group">
+				      <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Nama Bus</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="nama_bus" id ="nama_bus" class="form-control" placeholder="Nama Bus" >
+					     <input type="text" name="nama_bus" id ="namabus" class="form-control" placeholder="Nama Bus" readonly>
+
+                  </div>
+                </div>
+
+              <div class="form-group">
+                    <label class="col-sm-3 control-label">Siswa </label>
+
+                    <div class="col-sm-5">
+                  <select name="siswa" id="siswa" class="form-control">
+                    <option> -- Select siswa -- </option>
+                    <?php foreach ($dtSiswa as $r): ?>
+                    <option value="<?=$r['siswa'] ?>"><?=$r['siswa'] ?></option>
+                    <?php endforeach ?>
+                  </select>
+                    </div>
+                </div> 
+
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Tujuan</label>
+
+                  <div class="col-sm-5">
+                  <select name="tujuan" id="tujuan" class="form-control">
+                    <!--<option> -- Select Tujuan -- </option>
+                    <?php foreach ($dtTujuan as $r): ?>
+                    <option value="<?=$r['tujuan'] ?>"><?=$r['tujuan'] ?></option>
+                    <?php endforeach ?>-->
+                  </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="frekuensi" class="col-sm-3 control-label">Frekuensi</label>
+
+                  <div class="col-sm-5">
+                    <select name="frekuensi" required class="form-control">
+                    <option value=""> -- Select Frekuensi -- </option>
+                    <option value="PER SEKALI">PER SEKALI</option>
+                    <option value="PER BULAN">PER BULAN</option>
+                  </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="perjalanan" class="col-sm-3 control-label">Perjalanan</label>
+
+                  <div class="col-sm-5">
+                    <select name="perjalanan" required class="form-control">
+                    <option value=""> -- Select Perjalanan -- </option>
+                    <option value="1 WAY">1 WAY</option>
+                    <option value="2 WAY">2 WAY</option>
+                  </select>
+                  </div>
+                </div>
+            <div class="form-group">
+                  <label for="harga" class="col-sm-3 control-label">Harga</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" name="harga" required class="form-control" id="harga" placeholder="Input Harga ...">
                   </div>
                 </div>
               </div>
@@ -511,16 +596,16 @@ $( "select[name='siswa_nopin']" ).change(function () {
     if(jenjangID1 && siswa_nopin) {
 
 
-        $.ajax({
+       $.ajax({
             url: "<?php echo base_url('ajax/getDt');?>",
             dataType: 'Json',
             data: {'siswa_nopin':siswa_nopin , 'jenjang':jenjangID1},
              success: function(data) {
-                $('#parent').val(data.parent)
+                $('#parent1').val(data.parent)
                 $('#class').val(data.class)
                 $('#gender').val(data.gender)
                 $('#nama').val(data.nama)
-            }
+           }
         });
 
 
@@ -554,57 +639,498 @@ $( "select[name='floor']" ).change(function () {
     }
 });
 
-$( "select[name='type']" ).change(function () {
-    var typeID = $(this).val();
+//$( "select[name='type']" ).change(function () {
+//    var typeID = $(this).val();
 
 
-    if(typeID) {
+//    if(typeID) {
 
 
-        $.ajax({
-            url: "<?php echo base_url('ajax/getPrice');?>",
-            dataType: 'Json',
-            data: {'type':typeID},
-            success: function(data) {
-				$('#price').val(data)
+//        $.ajax({
+//            url: "<?php echo base_url('ajax/getPrice');?>",
+//            dataType: 'Json',
+//            data: {'type':typeID},
+//            success: function(data) {
+//				$('#price').val(data)
 				//console.log(data);
-            }
-        });
+//            }
+//        });
 
 
-    }else{
-        $('select[name="price"]').empty();
-    }
-});
+//    }else{
+//        $('select[name="price"]').empty();
+//    }
+//});
 
-$( "select[name='room_number']" ).change(function () {
-    var room_numberID1 = $("select#room_number").val();
-  console.log(room_numberID1);
+//$( "select[name='room_number']" ).change(function () {
+//    var room_numberID1 = $("select#room_number").val();
+//  console.log(room_numberID1);
 
     //if(room_numberID1 && floor) {
-      if(room_numberID1) {
+//      if(room_numberID1) {
+
+//        $.ajax({
+//            url: "<?php echo base_url('ajax/CeKkamar');?>",
+//            dataType: 'Json',
+            //data: {'floor':floor , 'room_number':room_numberID1},
+//            data: {'room_number':room_numberID1},
+//             success: function(data) {
+//                $('#facilities').val(data.facilities)
+//                $('#price').val(data.price)
+//                $('#type').val(data.type)
+//                $('#floor').val(data.floor)
+                //$('#room_number').val(data.room_number)
+//                console.log(data);
+//            }
+//        });
+
+
+//    }else{
+//        $('select[name="room_number"]').empty();
+//    }
+//});
+
+
+
+
+		</script>
+
+<script type="text/javascript"> 
+$( "select[name='jenjang2']" ).change(function () {
+    var jenjangID2 = $(this).val();
+    //alert('bisa kan');
+    if(jenjangID2) {
+
 
         $.ajax({
-            url: "<?php echo base_url('ajax/CeKkamar');?>",
-            dataType: 'Json',
-            //data: {'floor':floor , 'room_number':room_numberID1},
-            data: {'room_number':room_numberID1},
+            url: "<?php echo base_url('ajax/getNama2');?>",
+      //type: "POST",
+            dataType: 'json',
+            data: {'id':jenjangID2},
+        //data: "id=" + jenjangID,
+
              success: function(data) {
-                $('#facilities').val(data.facilities)
-                $('#price').val(data.price)
-                $('#type').val(data.type)
-                $('#floor').val(data.floor)
-                //$('#room_number').val(data.room_number)
-                console.log(data);
+        //console.log(data);
+                $('select[name="siswa_nopin2"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="siswa_nopin2"]').append('<option value="'+ key +'">'+ value +'</option>');
+                });
+            },
+       error: function(jqXHR, exception) {
+            //alert('[jqXHR:' + jqXHR + '], [textStatus:' + textStatus + '], [thrownError:' + errorThrown + '])');
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status == 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status == 500) {
+                alert('Internal Server Error [500].');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (exception === 'timeout') {
+                alert('Time out error.');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error.\n' + jqXHR.responseText);
+            }
+        },
+        });
+
+
+    }else{
+        $('select[name="siswa_nopin2"]').empty();
+    }
+});
+
+$( "select[name='siswa_nopin2']" ).change(function () {
+    var jenjang2ID1 = $("select#jenjang2").val();
+    var siswa_nopin2 = $(this).val();
+  console.log(jenjang2ID1);
+
+    if(jenjang2ID1 && siswa_nopin2) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getDt');?>",
+            dataType: 'Json',
+            data: {'siswa_nopin':siswa_nopin2 , 'jenjang':jenjang2ID1},
+             success: function(data) {
+                $('#parent2').val(data.parent)
+                $('#class2').val(data.class)
+                $('#gender2').val(data.gender)
+                $('#nama2').val(data.nama)
             }
         });
 
 
     }else{
-        $('select[name="room_number"]').empty();
+        $('select[name="siswa_nopin2"]').empty();
+    }
+});
+</script>
+
+<script type="text/javascript"> 
+$( "select[name='jenjang3']" ).change(function () {
+    var jenjangID3 = $(this).val();
+    //alert('bisa kan');
+    if(jenjangID3) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getNama2');?>",
+      //type: "POST",
+            dataType: 'json',
+            data: {'id':jenjangID3},
+        //data: "id=" + jenjangID,
+
+             success: function(data) {
+        //console.log(data);
+                $('select[name="siswa_nopin3"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="siswa_nopin3"]').append('<option value="'+ key +'">'+ value +'</option>');
+                });
+            },
+       error: function(jqXHR, exception) {
+            //alert('[jqXHR:' + jqXHR + '], [textStatus:' + textStatus + '], [thrownError:' + errorThrown + '])');
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status == 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status == 500) {
+                alert('Internal Server Error [500].');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (exception === 'timeout') {
+                alert('Time out error.');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error.\n' + jqXHR.responseText);
+            }
+        },
+        });
+
+
+    }else{
+        $('select[name="siswa_nopin3"]').empty();
     }
 });
 
-		</script>
+$( "select[name='siswa_nopin3']" ).change(function () {
+    var jenjang3ID1 = $("select#jenjang3").val();
+    var siswa_nopin3 = $(this).val();
+  console.log(jenjang3ID1);
+
+    if(jenjang3ID1 && siswa_nopin3) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getDt');?>",
+            dataType: 'Json',
+            data: {'siswa_nopin':siswa_nopin3 , 'jenjang':jenjang3ID1},
+             success: function(data) {
+                $('#parent3').val(data.parent)
+                $('#class3').val(data.class)
+                $('#gender3').val(data.gender)
+                $('#nama3').val(data.nama)
+            }
+        });
+
+
+    }else{
+        $('select[name="siswa_nopin3"]').empty();
+    }
+});
+</script>
+
+<script type="text/javascript"> 
+$( "select[name='jenjang4']" ).change(function () {
+    var jenjangID4 = $(this).val();
+    //alert('bisa kan');
+    if(jenjangID4) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getNama2');?>",
+      //type: "POST",
+            dataType: 'json',
+            data: {'id':jenjangID4},
+        //data: "id=" + jenjangID,
+
+             success: function(data) {
+        //console.log(data);
+                $('select[name="siswa_nopin4"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="siswa_nopin4"]').append('<option value="'+ key +'">'+ value +'</option>');
+                });
+            },
+       error: function(jqXHR, exception) {
+            //alert('[jqXHR:' + jqXHR + '], [textStatus:' + textStatus + '], [thrownError:' + errorThrown + '])');
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status == 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status == 500) {
+                alert('Internal Server Error [500].');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (exception === 'timeout') {
+                alert('Time out error.');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error.\n' + jqXHR.responseText);
+            }
+        },
+        });
+
+
+    }else{
+        $('select[name="siswa_nopin4"]').empty();
+    }
+});
+
+$( "select[name='siswa_nopin4']" ).change(function () {
+    var jenjang4ID1 = $("select#jenjang4").val();
+    var siswa_nopin4 = $(this).val();
+  console.log(jenjang4ID1);
+
+    if(jenjang4ID1 && siswa_nopin4) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getDt');?>",
+            dataType: 'Json',
+            data: {'siswa_nopin':siswa_nopin4 , 'jenjang':jenjang4ID1},
+             success: function(data) {
+                $('#parent4').val(data.parent)
+                $('#class4').val(data.class)
+                $('#gender4').val(data.gender)
+                $('#nama4').val(data.nama)
+            }
+        });
+
+
+    }else{
+        $('select[name="siswa_nopin4"]').empty();
+    }
+});
+</script>
+
+<script type="text/javascript"> 
+$( "select[name='jenjang5']" ).change(function () {
+    var jenjangID5 = $(this).val();
+    //alert('bisa kan');
+    if(jenjangID5) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getNama2');?>",
+      //type: "POST",
+            dataType: 'json',
+            data: {'id':jenjangID5},
+        //data: "id=" + jenjangID,
+
+             success: function(data) {
+        //console.log(data);
+                $('select[name="siswa_nopin5"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="siswa_nopin5"]').append('<option value="'+ key +'">'+ value +'</option>');
+                });
+            },
+       error: function(jqXHR, exception) {
+            //alert('[jqXHR:' + jqXHR + '], [textStatus:' + textStatus + '], [thrownError:' + errorThrown + '])');
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status == 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status == 500) {
+                alert('Internal Server Error [500].');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (exception === 'timeout') {
+                alert('Time out error.');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error.\n' + jqXHR.responseText);
+            }
+        },
+        });
+
+
+    }else{
+        $('select[name="siswa_nopin5"]').empty();
+    }
+});
+
+$( "select[name='siswa_nopin5']" ).change(function () {
+    var jenjang5ID1 = $("select#jenjang5").val();
+    var siswa_nopin5 = $(this).val();
+  console.log(jenjang5ID1);
+
+    if(jenjang5ID1 && siswa_nopin5) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getDt');?>",
+            dataType: 'Json',
+            data: {'siswa_nopin':siswa_nopin5 , 'jenjang':jenjang5ID1},
+             success: function(data) {
+                $('#parent5').val(data.parent)
+                $('#class5').val(data.class)
+                $('#gender5').val(data.gender)
+                $('#nama5').val(data.nama)
+            }
+        });
+
+
+    }else{
+        $('select[name="siswa_nopin5"]').empty();
+    }
+});
+
+  /*
+  $( "select[name='no_stnk']" ).change(function () {
+    var no_stnkID = $(this).val();
+
+
+    if(no_stnkID) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getStnk');?>",
+      //type: "POST",
+            dataType: 'json',
+            data: {'no_stnk':no_stnkID},
+        //data: "id=" + floorID,
+
+             success: function(data) {
+        //console.log(data);
+                $('select[name="tipe_bus"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="tipe_bus"]').append('<option value="'+ key +'">'+ value +'</option>');
+                });
+            },
+        });
+
+
+    }else{
+        $('select[name="tipe_bus"]').empty();
+    }
+});
+
+  $( "select[name='tipe_bus']" ).change(function () {
+    var tipe_busID = $("select#tipe_bus").val();
+    console.log(tipe_busID);
+
+    if(tipe_busID) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getNamaBus');?>",
+            dataType: 'Json',
+            data: {'tipe_bus':tipe_busID},
+            success: function(data) {
+        $('#nama_bus').val(data.nama_bus)
+        console.log(data);
+            }
+        });
+
+
+    }else{
+        $('select[name="tipe_bus"]').empty();
+    }
+});
+*/
+</script>
+
+<script type="text/javascript">
+
+$( "select[name='no_stnk']" ).change(function () {
+    var no_stnkID = $("select#no_stnk").val();
+  //console.log(no_stnkID);
+
+    if(no_stnkID) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getStnk');?>",
+            dataType: 'Json',
+            data: {'no_stnk':no_stnkID},
+             success: function(data) {
+                $('#tipebus').val(data.tipe_bus)
+                $('#namabus').val(data.nama_bus)
+            }
+        });
+
+
+    }else{
+        $('select[name="no_stnk"]').empty();
+    }
+});
+</script>
+
+<script type="text/javascript">
+
+ $( "select[name='siswa']" ).change(function () {
+    var siswaID = $(this).val();
+
+
+    if(siswaID) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getTujuan');?>",
+      //type: "POST",
+            dataType: 'Json',
+            data: {'siswa':siswaID},
+        //data: "id=" + floorID,
+
+             success: function(data) {
+        //console.log(data);
+                $('select[name="tujuan"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="tujuan"]').append('<option value="'+ key +'">'+ value +'</option>');
+                });
+            },
+        });
+
+
+    }else{
+        $('select[name="tujuan"]').empty();
+    }
+});
+
+</script>
+<!--
+<script type="text/javascript">
+  $( "select[name='siswa']" ).change(function () {
+    var siswaID1 = $("select#siswa").val();
+  //console.log(siswaID1);
+
+      if(siswaID1) {
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getBiaya');?>",
+            dataType: 'Json',
+            data: {'siswa':siswaID1},
+             success: function(data) {
+                $('#harga').val(data.harga)
+                $('#perjalanan').val(data.perjalanan)
+                $('#frekuensi').val(data.frekuensi)
+                $('#tujuan').val(data.tujuan)
+                
+                //console.log(data);
+            }
+        });
+
+
+    }else{
+        $('select[name="siswa"]').empty();
+    }
+});
+</script>
+-->
 </body>
 </html>

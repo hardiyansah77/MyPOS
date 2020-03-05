@@ -70,6 +70,13 @@
 					<?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><input type="text" name="class" value="<?=$r->class ?>" id ="class" class="form-control" placeholder="Class ..." readonly><?php endforeach ?>
                   </div>
                 </div>
+        <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Room Number</label>
+
+                  <div class="col-sm-5">
+                    <?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><input type="text" name="room_number" value="<?=$r->room_number ?>" class="form-control" id="inputEmail3" placeholder="Input room number ..."><?php endforeach ?>
+                  </div>
+                </div>        
 				<div class="form-group">
                   <label for="inputPassword3" class="col-sm-3 control-label">Floor</label>
 
@@ -90,13 +97,6 @@
                     <select class="form-control" name="type" id="type" required>
 						<?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><option value="<?=$r->type ?>"><?= $r->type ?></option><?php endforeach ?>
 					</select>
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Room Number</label>
-
-                  <div class="col-sm-5">
-                    <?php foreach ($data1['tbl_dormitory_transaction']  as $r): ?><input type="text" name="room_number" value="<?=$r->room_number ?>" class="form-control" id="inputEmail3" placeholder="Input room number ..."><?php endforeach ?>
                   </div>
                 </div>
 				<div class="form-group">

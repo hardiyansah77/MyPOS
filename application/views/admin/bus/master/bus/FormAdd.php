@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<!-- Bootstrap 3.3.7 -->
-<link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
-<!-- jQuery 3 -->
-<link rel="stylesheet" href="../../bower_components/jquery/dist/jquery.min.js">
-<!-- FastClick -->
-<link rel="stylesheet" href="../../bower_components/fastclick/lib/fastclick.js">
-<!-- AdminLTE App -->
-<link rel="stylesheet" href="../../dist/js/adminlte.min.js">
-<!-- AdminLTE for demo purposes -->
-<link rel="stylesheet" href="../../dist/js/demo.js">
-</head>
-
-
-
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -25,8 +8,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="#">Forms Add</a></li>
-        <li class="active">Data Bus</li>
+        <li><a href="#">Data Bus</a></li>
+        <li class="active">Forms Add</li>
       </ol>
     </section>
 

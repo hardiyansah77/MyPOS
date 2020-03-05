@@ -79,7 +79,7 @@
 						<a class="green" href="<?=base_url();?>admin/formEditPengguna/<?=$r['id_petugas'] ?>">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
-						<a class="red" href="<?=base_url();?>admin/deleteDataPengguna/<?=$r['id_petugas'] ?>">
+						<a class="red" href="#">
 							<i class="ace-icon fa fa-trash-o bigger-130"></i>
 						</a>
 					</div></center>

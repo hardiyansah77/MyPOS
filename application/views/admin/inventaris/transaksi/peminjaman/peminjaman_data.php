@@ -41,37 +41,13 @@
 						<i class="ace-icon fa fa-check green"></i>
 						  Data peminjaman berhasil diinput.
 					</div>';
-				  }else if($message == "gagal"){
-                            echo '<div class="alert alert-block alert-success">
-                              <button type="button" class="close" data-dismiss="alert">
-                                <i class="ace-icon fa fa-times"></i>
-                              </button>
-                                <i class="ace-icon fa fa-check green"></i>
-                                  jumlah barang melebihi.
-                            </div>';
-                          }
-				else if($message == "update"){
-                            echo '<div class="alert alert-block alert-success">
-                              <button type="button" class="close" data-dismiss="alert">
-                                <i class="ace-icon fa fa-times"></i>
-                              </button>
-                                <i class="ace-icon fa fa-check green"></i>
-                                  Status Berubah.
-                            </div>';
-                          }
+				  }
 				}
 			  ?>
-				<div class="form-group">
-                            <label for="inputEmail3" class="col-sm-3 control-label">No Transaksi</label>
-                            <div class="col-sm-5">
-                                <input type="text" name="id_transaksi" id="id_transaksi" class="form-control" value="<?php echo $autonumber ?>" readonly="readonly">
-                            </div>
-                        </div>
 				<div class="form-group">
                   <label for="inputPassword3" class="col-sm-3 control-label">NIK</label>
 
                   <div class="col-sm-5">
-				  <input type="hidden" name="no_transaksi" id ="no_transaksi" class="form-control" >
                     <select name="nik" id="nik" class="form-control">
                     <option> -- Select NIK -- </option>
                     <?php foreach ($dtKaryawan  as $r): ?>
@@ -84,7 +60,7 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Nama Karyawan</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="nama" id ="nama" class="form-control" placeholder="Nama karyawan ..." readonly>
+					<input type="text" name="" id ="nama" class="form-control" placeholder="Nama karyawan ..." readonly>
                   </div>
                 </div>
 				<div class="form-group">
@@ -103,7 +79,7 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Nama Barang</label>
 
                   <div class="col-sm-5">
-					<input type="text" name="nama_barang" id ="barang" class="form-control" placeholder="Nama barang ..." readonly>
+					<input type="text" name="" id ="barang" class="form-control" placeholder="Nama barang ..." readonly>
                   </div>
                 </div>
 				<div class="form-group">
@@ -113,14 +89,6 @@
 					<input type="text" name=""  id ="jenis" class="form-control" placeholder="Jenis barang ..." readonly>
                   </div>
                 </div>
-				
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Jumlah</label>
-
-                  <div class="col-sm-5">
-					<input type="text" name="jumlah" id ="jumlah" class="form-control" placeholder="jumlah ..." readonly>
-                  </div>
-                </div>
 				<div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Jumlah Barang</label>
 
@@ -128,32 +96,10 @@
                     <input type="number" required name="jml_barang" class="form-control" id="inputEmail3" placeholder="Jumlah barang ...">
                   </div>
                 </div>
-				<div class="form-group">
-                            <label for="inputEmail3" class="col-sm-3 control-label">Tanggal Pinjam</label>
-                            <div class="col-sm-5">
-                                <input type="text" name="tanggal_pinjam" id="tanggal_pinjam" class="form-control" value="<?= $tglpinjam; ?>" readonly="readonly"> 
-                            </div>
-                        </div>
-                        
-                 <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-3 control-label">Tanggal Kembali</label>
-                            <div class="col-sm-5">
-                                <input type="text" name="tanggal_kembali" id="tanggal_kembali" class="form-control" value="<?= $tglkembali; ?>" readonly="readonly"> 
-                            </div>
-                        </div>
-				<div class="form-group">
-						<label class="col-sm-3 control-label"> </label>
-					 <div class="col-sm-5">
-					<input type="hidden" name="status" id="status" class="form-control" autocomplete="off"  placeholder="status ..."> 
-				 </div>
-                </div>
-						
-					
-				
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-			  <div class="col-sm-offset-3 col-sm-10">					
+			  <div class="col-sm-offset-3 col-sm-10">
                 <button type="submit" class="btn btn-default">Batal</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
@@ -380,8 +326,6 @@
 <script src="<?php echo base_url();?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url();?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script src="<?php echo base_url();?>assets/dist/js/bootstrap-datepicker.js"></script>
 <!-- FastClick -->
 <script src="<?php echo base_url();?>assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
@@ -425,7 +369,6 @@ $( "select[name='kode_barang']" ).change(function () {
             success: function(data) {
 				$('#barang').val(data.barang)
 				$('#jenis').val(data.jenis)
-				$('#jumlah').val(data.jumlah)
 				//console.log(data);
             }
         });
@@ -435,24 +378,6 @@ $( "select[name='kode_barang']" ).change(function () {
         $('select[name="barang"]').empty();
     }
 });
-//datepicker
-    $("#tanggal_pinjam").datepicker({
-        format:'dd-mm-yyyy'
-    });
-    
-    $("#tanggal_kembali").datepicker({
-        format:'dd-mm-yyyy'
-    });
-    
-    $("#tanggal").datepicker({
-        format:'dd-mm-yyyy'
-    });
-
-
-
-
-
-
 </script>
 </body>
 </html>

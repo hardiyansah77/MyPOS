@@ -14,19 +14,15 @@ class Admin extends CI_Controller {
 			$this->load->model('model');
 			//$this->load->model('m_cari');
 		}
-		
-	
-		
+
+
 	public function index()
 		{
-			 
 //echo '<pre>'; print_r($_SESSION);exit;
-
 			$this->load->view('admin/header');
 			$this->load->view('admin/dashboard');
-			
 		}
-	
+		
 /*======================================================================================================================
 
 													DORMITORY
@@ -121,8 +117,106 @@ class Admin extends CI_Controller {
 			redirect('admin/dtDormitory?message=delete');
 		}
 		
-// <<--------------------DATA DORMITORY-------------------->>	
+// <<--------------------DATA DORMITORY-------------------->>
 
+
+// ===============================================================================================================================
+
+
+// <<--------------------DATA KAMAR------------------------>>	
+	
+	public function dtKamarLengkap()
+		{
+			$dtKamarLengkap = $this->model->selectdata('kamar order by id')->result_array();
+			$data = array(
+			'dtKamarLengkap'	=> $dtKamarLengkap,
+				);
+			$this->load->view('admin/header');
+			$this->load->view('admin/dormitory/dtKamar/dtKamarLengkap',$data);
+		
+		}
+	
+	public function formAddKamar()
+		{
+			$dtFloor 		= $this->model->selectfloor('floor','tbl_dormitory')->result_array();
+			$dtType 		= $this->model->selectdata0('tbl_dormitory','type')->result_array();
+			$dtIDkamar 		= $this->model->selectdata0('tbl_dormitory','id')->result_array();
+			$data = array(
+						  
+						  'dtFloor'					=> $dtFloor,
+						  'dtType'					=> $dtType,
+						  'dtIDkamar'				=> $dtIDkamar,
+						  );
+
+			$this->load->view('admin/header');
+			$this->load->view('admin/dormitory/dtKamar/formAdd',$data);
+		}
+
+	public function actionAddKamar()
+	{
+
+		$id 				= $this->input->post('id');
+		$room_number 		= $this->input->post('room_number');
+		$flag				= $this->input->post('flag');
+		
+		$data 		= array(
+							'id'			=> $id,
+							'room_number' 	=> $room_number,
+							'flag' 			=> 'N',
+							);
+					//print_r($data);
+					//exit;
+		$sql = $this->db->query("SELECT room_number FROM kamar where room_number='$room_number'");
+		$cek_nik = $sql->num_rows();
+		if ($cek_nik){
+			//print_r($cek_nik);
+					//exit;
+		$this->session->set_flashdata('message', 'Nomor Kamar Sudah Digunakan');
+		redirect('admin/formAddKamar?message=gagal');
+		}else{
+		$this->model->insertdata('kamar', $data);
+		redirect('admin/dtKamarLengkap?message=input');
+		}
+	}
+
+	public function formEditKamar($nomor)
+		{
+			$where = array('nomor' => $nomor);
+			$data['kamar'] = $this->model->edit_data($where,'kamar')->result();
+			$this->load->view('admin/header');
+			$this->load->view('admin/dormitory/dtKamar/formEdit', $data);
+		}
+
+	public function updateKamar()
+		{
+			$nomor				= $this->input->post('nomor');
+			$id 	 			= $this->input->post('id');
+			$room_number 		= $this->input->post('room_number');
+			$flag				= $this->input->post('flag');
+		 
+			$data 		= array(
+								'id'				=> $id,
+								'room_number' 		=> $room_number,
+								'flag' 				=> $flag,
+								);
+		 
+			$where = array('nomor' => $nomor);
+
+			//print_r($data);
+			//	exit;
+		 
+			$this->model->update_data($where,$data,'kamar');
+			redirect('admin/dtKamarLengkap?message=update');
+		}
+
+	public function deleteKamar($nomor = '')
+		{
+			$deldata	= $this->model->deldata('kamar',array('nomor' => $nomor));
+			redirect('admin/dtKamarLengkap?message=delete');
+		}	
+
+
+// <<--------------------DATA KAMAR------------------------>>
 
 
 // ===============================================================================================================================
@@ -154,9 +248,11 @@ class Admin extends CI_Controller {
 	public function formAddDormitoryTransaction()
 		{
 			$dtDormitoryTransaction = $this->model->selectdata2('unit_name','TblUnitSekolah WHERE unit_not_active<>"Y"')->result_array();
+			$dtKamarLengkap 		= $this->model->selectKamar()->result_array();
 			$dtFloor 				= $this->model->selectfloor('floor','tbl_dormitory')->result_array();
 			$data = array(
 						  'dtDormitoryTransaction'		=> $dtDormitoryTransaction,
+						  'dtKamarLengkap'				=> $dtKamarLengkap,
 						  'dtFloor'						=> $dtFloor,
 						  );
 			$this->load->view('admin/header');
@@ -167,33 +263,46 @@ class Admin extends CI_Controller {
 		{
 			$jenjang 		= $this->input->post('jenjang');
 			$siswa_nopin	= $this->input->post('siswa_nopin');
-			$nama	= $this->input->post('nama');
+			$nama			= $this->input->post('nama');
 			$gender			= $this->input->post('gender');
 			$parent			= $this->input->post('parent');
 			$class			= $this->input->post('class');
 			$floor			= $this->input->post('floor');
 			$type			= $this->input->post('type');
 			$room_number	= $this->input->post('room_number');
+			$facilities		= $this->input->post('facilities');
 			$price			= $this->input->post('price');
 			
 			$data 			= array(
 									'jenjang' 		=> $jenjang,
 									'siswa_nopin' 	=> $siswa_nopin,
-									'nama' 	=> $nama,
+									'nama' 			=> $nama,
 									'gender' 		=> $gender,
 									'parent' 		=> $parent,
 									'class' 		=> $class,
 									'floor' 		=> $floor,
 									'type' 			=> $type,
 									'room_number' 	=> $room_number,
+									'facilities'	=> $facilities,
 									'price' 		=> $price,
 									);
+			$data1 		= array(
+								'room_number' 		=> $room_number,
+								'flag' 				=> Y,
+								);
+		 
+			$where = array('room_number' => $room_number);
+			
+			//echo '<pre>';print_r($update_data);exit;
+			$this->model->update_data($where,$data1,'kamar');
+			
 									//print_r($data);
 						//exit;
 			$this->model->insertdata('tbl_dormitory_transaction', $data);
 						
 			redirect('admin/dtDormitoryTransaction?message=input');
 		}
+
 		
 	public function formEditDormitoryTransaction($id_transaction)
 		{
@@ -249,8 +358,79 @@ class Admin extends CI_Controller {
 			redirect('admin/dtDormitoryTransaction?message=delete');
 		}
 
-// <<--------------DATA DORMITORY TRANSACTION-------------->>	
+// <<--------------DATA DORMITORY TRANSACTION-------------->>
 
+
+// =============================================================================================================================
+
+
+
+// <<------------CHECKOUT------------->>
+
+
+	public function dtCheckout()
+		{
+		$dtCheckout = $this->model->selectdata('tbl_dormitory_transaction where state = 1 order by id_transaction desc')->result_array();
+		$data = array(
+						'dtCheckout'			=> $dtCheckout,
+						'sum'					=> $this->model->sum(),
+					  );
+			$this->load->view('admin/header');
+			$this->load->view('admin/dormitory/checkout/dtCheckout', $data);
+		}
+		
+	public function searchCheckout()
+		{	
+		//$dt			   = explode("-",$_POST['reservation']);
+		$datepicker 		   = str_replace('/', '-', $_POST['datepicker']);
+		$datepicker1 		   = str_replace('/', '-', $_POST['datepicker1']);
+		$filterSearch1 = date("Y-m-d", strtotime($datepicker));
+		$filterSearch2 = date("Y-m-d", strtotime($datepicker1));
+		//print_r($filterSearch2);exit;
+		$name		   = $this->input->post('nama');
+		$class		   = $this->input->post('class');
+		$room		   = $this->input->post('room');
+		//print_r($filterSearch1);exit;
+		//print_r($class && $room);exit;
+		//print_r($class);exit;
+		$data 		= array('results' => $this->model->searchdate($filterSearch1,$filterSearch2,$name,$class,$room),
+							//'sum'     => $this->model->sumPrice($filterSearch1,$filterSearch2,$class,$room),
+							);
+			$this->load->view('admin/header');
+			$this->load->view('admin/dormitory/checkout/searchCheckout', $data);
+		}
+		
+	public function searchCheckoutcontoh()
+		{	
+			$this->load->view('admin/header');
+			$this->load->view('admin/dormitory/checkout/searchCheckout');
+		}
+
+	public function actiondtCheckout($id_transaction,$room_number)
+		{
+			
+			$state			= $this->input->post('state');
+			$status			= $this->input->post('status');
+			$data1 		= array(
+								'id_transaction' 		=> $id_transaction,
+								'state' 				=> 0,
+								'status'				=> 1,
+								);
+		 
+			$where1 = array('id_transaction' => $id_transaction);
+			//print_r($where);exit;
+			//echo '<pre>';print_r($data);exit;
+			$this->model->update_data($where1,$data1,'tbl_dormitory_transaction');
+			$data2 		= array(
+								'room_number' 		=> $room_number,
+								'flag'				=> 'N',
+								);
+			$where2 = array('room_number' => $room_number);
+			$this->model->update_data($where2,$data2,'kamar');
+			redirect('admin/dtCheckout?message=successfully');
+		}
+
+// <<------------CHECKOUT------------->>
 
 
 // =============================================================================================================================
@@ -261,10 +441,10 @@ class Admin extends CI_Controller {
 
 	public function laporanDormitoryTransaction()
 		{
-		$dtDormitoryApprove = $this->model->selectdata('tbl_dormitory_transaction where state = 1 order by id_transaction desc')->result_array();
+		$dtDormitoryApprove = $this->model->selectdata('tbl_dormitory_transaction where status = 1 order by id_transaction desc')->result_array();
 		$data = array(
 						'dtDormitoryApprove'	=> $dtDormitoryApprove,
-						'sum'					=> $this->model->sum(),
+						'sum1'					=> $this->model->sum1(),
 					  );
 			$this->load->view('admin/header');
 			$this->load->view('admin/dormitory/laporan/laporanDormitoryTransaction', $data);
@@ -278,12 +458,13 @@ class Admin extends CI_Controller {
 		$filterSearch1 = date("Y-m-d", strtotime($datepicker));
 		$filterSearch2 = date("Y-m-d", strtotime($datepicker1));
 		//print_r($filterSearch2);exit;
+		$name		   = $this->input->post('nama');
 		$class		   = $this->input->post('class');
 		$room		   = $this->input->post('room');
 		//print_r($filterSearch1);exit;
 		//print_r($class && $room);exit;
 		//print_r($class);exit;
-		$data 		= array('results' => $this->model->searchdate($filterSearch1,$filterSearch2,$class,$room),
+		$data 		= array('results' => $this->model->searchdate($filterSearch1,$filterSearch2,$name,$class,$room),
 							//'sum'     => $this->model->sumPrice($filterSearch1,$filterSearch2,$class,$room),
 							);
 			$this->load->view('admin/header');
@@ -295,6 +476,7 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/header');
 			$this->load->view('admin/dormitory/laporan/searchDormitoryTransaction');
 		}
+
 
 // <<------------LAPORAN DORMITORY TRANSACTION------------->>
 
@@ -369,7 +551,7 @@ class Admin extends CI_Controller {
 			$nama		= $this->input->post('nama');
 			$jk		= $this->input->post('jk');
 			$ttl	= $this->input->post('ttl');
-			$bagian	= $this->input->post('bagian');
+			$bagian	= $this->input->post('qty_male');
 			
 			$data 		= array(
 								'nik' 			=> $nik,
@@ -380,15 +562,8 @@ class Admin extends CI_Controller {
 								);
 						//print_r($data);
 						//exit;
-						$sql = $this->db->query("SELECT nik from karyawan where nik='$nik'");
-			$cek_nik= $sql->num_rows();
-			if($cek_nik){
-			$this->session->set_flashdata('message','NIK Sudah Ada');
-			redirect('admin/dtKaryawan?message=gagal');
-			}else{
 			$this->model->insertdata('karyawan', $data);
 			redirect('admin/dtKaryawan?message=input');
-			}
 		}
 		
 	public function formEditKaryawan($nik)
@@ -430,26 +605,17 @@ class Admin extends CI_Controller {
 	public function dtBarang()
 		{
 			$dtBarang = $this->model->selectdata('barang')->result_array();
-			$dtLokasi 	= $this->model->selectdata3('nama_ruang','lokasi')->result_array();
-			
 			$data = array(
 			'dtBarang'	=> $dtBarang,
-			'dtLokasi' => $dtLokasi,
 				);
-				//print_r($data) ; exit ;
 			$this->load->view('admin/header');
 			$this->load->view('admin/inventaris/dtMaster/barang/dtBarang', $data);
 		}
 		
 	public function formAddBarang()
 		{
-			$dtLokasi 	= $this->model->selectdata3('nama_ruang','lokasi')->result_array();
-			
-			$data = array(
-			'dtLokasi'	=> $dtLokasi,
-				);
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/dtMaster/barang/formAdd', $data);
+			$this->load->view('admin/inventaris/dtMaster/barang/formAdd');
 		}
 
 	public function actionAddBarang()
@@ -458,7 +624,6 @@ class Admin extends CI_Controller {
 			$kode_barang 		= $this->input->post('kode_barang');
 			$nama_barang		= $this->input->post('nama_barang');
 			$jenis_barang		= $this->input->post('jenis_barang');
-			$ruang		= $this->input->post('ruang');
 			$jumlah	= $this->input->post('jumlah');
 			$keterangan	= $this->input->post('keterangan');
 			
@@ -466,31 +631,17 @@ class Admin extends CI_Controller {
 								'kode_barang' 			=> $kode_barang,
 								'nama_barang' 			=> $nama_barang,
 								'jenis_barang' 			=> $jenis_barang,
-								'ruang' 			=> $ruang,
 								'jumlah' 			=> $jumlah,
 								'keterangan' 		=> $keterangan,
 								);
 						//print_r($data);
 						//exit;
-			$sql = $this->db->query("SELECT kode_barang from barang where kode_barang='$kode_barang'");
-			$cek_barang= $sql->num_rows();
-			if($cek_barang){
-			$this->session->set_flashdata('message','Kode Barang Sudah Ada');
-			redirect('admin/dtBarang?message=gagal');
-			}else{			
 			$this->model->insertdata('barang', $data);
 			redirect('admin/dtBarang?message=input');
-			}
-		
 		}
 		
 	public function formEditBarang($kode_barang)
 		{
-			$dtLokasi 	= $this->model->selectdata3('nama_ruang','lokasi')->result_array();
-			
-			$data = array(
-			'dtLokasi'	=> $dtLokasi,
-				);
 			$where = array('kode_barang' => $kode_barang);
 			$data['barang'] = $this->model->edit_data($where,'barang')->result();
 			$this->load->view('admin/header');
@@ -502,7 +653,6 @@ class Admin extends CI_Controller {
 			$kode_barang 		= $this->input->post('kode_barang');
 			$nama_barang		= $this->input->post('nama_barang');
 			$jenis_barang		= $this->input->post('jenis_barang');
-			$ruang		= $this->input->post('ruang');
 			$jumlah	= $this->input->post('jumlah');
 			$keterangan	= $this->input->post('keterangan');
 		 
@@ -510,7 +660,6 @@ class Admin extends CI_Controller {
 							'kode_barang' 			=> $kode_barang,
 							'nama_barang' 			=> $nama_barang,
 							'jenis_barang' 			=> $jenis_barang,
-							'ruang' 			=> $ruang,
 							'jumlah' 			=> $jumlah,
 							'keterangan' 		=> $keterangan,
 								);
@@ -664,95 +813,25 @@ class Admin extends CI_Controller {
 	public function dtMutasi()
 		{
 			$dtMutasi = $this->model->selectdata('mutasi')->result_array();
-			$dtBarang 	= $this->model->selectdata3('nama_barang','barang')->result_array();
-			$dtLokasi 	= $this->model->selectdata3('kode_ruang','lokasi')->result_array();
-			
-			
-			
 			$data = array(
-			'dtBarang'	=> $dtBarang,
 			'dtMutasi'	=> $dtMutasi,
-			'dtLokasi'	=> $dtLokasi,
 				);
-				//print_r($data) ; exit ;
 			$this->load->view('admin/header');
 			$this->load->view('admin/inventaris/dtMaster/mutasi/dtMutasi', $data);
 		}
 		
 	public function formAddMutasi()
 		{
-			$dtBarang 	= $this->model->selectdata3('nama_barang','barang')->result_array();
-			$dtLokasi 	= $this->model->selectdata3('kode_ruang','lokasi')->result_array();
-			
-			$data = array(
-			'dtBarang'	=> $dtBarang,
-			'dtLokasi'	=> $dtLokasi,
-				);
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/dtMaster/mutasi/formAdd', $data);
+			$this->load->view('admin/inventaris/dtMaster/mutasi/formAdd');
 		}
 		
-	public function actionAddMutasi()
-	{
-
-		$no_mutasi 			= $this->input->post('no_mutasi');
-		$kd_ruang			= $this->input->post('kd_ruang');
-		$nama_barang		= $this->input->post('nama_barang');
-		$jumlah				= $this->input->post('jumlah');
-		
-		
-		$data 		= array(
-							'no_mutasi' 		=> $no_mutasi,
-							'kd_ruang' 			=> $kd_ruang,
-							'nama_barang' 		=> $nama_barang,
-							'jumlah'	 		=> $jumlah,
-							
-							);
-					//print_r($data);
-					//exit;
-		$this->model->insertdata('mutasi', $data);
-		redirect('admin/dtMutasi?message=input');
-	}
-	
 	public function formEditMutasi($no_mutasi)
 		{
-			$dtBarang 	= $this->model->selectdata3('nama_barang','barang')->result_array();
-			$dtLokasi 	= $this->model->selectdata3('kode_ruang','lokasi')->result_array();
-			
-			$data = array(
-			'dtBarang'	=> $dtBarang,
-			'dtLokasi'	=> $dtLokasi,
-			);
 			$where = array('no_mutasi' => $no_mutasi);
 			$data['mutasi'] = $this->model->edit_data($where,'mutasi')->result();
 			$this->load->view('admin/header');
 			$this->load->view('admin/inventaris/dtMaster/mutasi/formEdit', $data);
-		}
-		
-	public function updateMutasi()
-		{
-		$no_mutasi 			= $this->input->post('no_mutasi');
-		$kd_ruang			= $this->input->post('kd_ruang');
-		$nama_barang		= $this->input->post('nama_barang');
-		$jumlah				= $this->input->post('jumlah');
-		 
-			$data 		= array(
-							'no_mutasi' 		=> $no_mutasi,
-							'kd_ruang' 			=> $kd_ruang,
-							'nama_barang' 		=> $nama_barang,
-							'jumlah'	 		=> $jumlah,
-								);
-		 
-			$where = array('no_mutasi' => $no_mutasi);
-		 //print_r($data);exit;
-			$this->model->update_data($where,$data,'mutasi');
-			redirect('admin/dtMutasi?message=update');
-		}
-	
-	public function deleteDataMutasi($no_mutasi = '')
-		{
-			$deldata	= $this->model->deldata('mutasi',array('no_mutasi' => $no_mutasi));
-			redirect('admin/dtMutasi?message=delete');
 		}
 		
 	public function dtDepartemen()
@@ -771,26 +850,6 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/inventaris/dtMaster/departemen/formAdd');
 		}
 		
-	public function actionAddDepartemen()
-	{
-
-		$id_departemen 				= $this->input->post('id_departemen');
-		$nama_departemen			= $this->input->post('nama_departemen');
-		$ruang_departemen			= $this->input->post('ruang_departemen');
-		
-		
-		$data 		= array(
-							'id_departemen' 		=> $id_departemen,
-							'nama_departemen' 		=> $nama_departemen,
-							'ruang_departemen' 		=> $ruang_departemen,
-							
-							);
-					//print_r($data);
-					//exit;
-		$this->model->insertdata('departemen', $data);
-		redirect('admin/dtDepartemen?message=input');
-	}
-		
 	public function formEditDepartemen($id_departemen)
 		{
 			$where = array('id_departemen' => $id_departemen);
@@ -798,40 +857,12 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/header');
 			$this->load->view('admin/inventaris/dtMaster/departemen/formEdit', $data);
 		}
-		
-	public function updateDepartemen()
-		{
-		$id_departemen 				= $this->input->post('id_departemen');
-		$nama_departemen			= $this->input->post('nama_departemen');
-		$ruang_departemen			= $this->input->post('ruang_departemen');
-		 
-			$data 		= array(
-							'id_departemen' 		=> $id_departemen,
-							'nama_departemen' 		=> $nama_departemen,
-							'ruang_departemen' 		=> $ruang_departemen,
-								);
-		 
-			$where = array('id_departemen' => $id_departemen);
-		 //print_r($data);exit;
-			$this->model->update_data($where,$data,'departemen');
-			redirect('admin/dtDepartemen?message=update');
-		}
-	
-	public function deleteDataDepartemen($id_departemen = '')
-		{
-			$deldata	= $this->model->deldata('departemen',array('id_departemen' => $id_departemen));
-			redirect('admin/dtDepartemen?message=delete');
-		}
-
-
 
 	public function dtPenempatan()
 		{
 			$dtPenempatan = $this->model->selectdata('penempatan')->result_array();
-			$dtBarang 	= $this->model->selectdata3('nama_barang','barang')->result_array();
-			$dtLokasi 	= $this->model->selectdata3('nama_ruang','lokasi')->result_array();
 			$data = array(
-			'dtPenempatan'	=> $dtPenempatan, $dtBarang, $dtLokasi
+			'dtPenempatan'	=> $dtPenempatan,
 				);
 			$this->load->view('admin/header');
 			$this->load->view('admin/inventaris/dtMaster/penempatan/dtPenempatan', $data);
@@ -839,69 +870,17 @@ class Admin extends CI_Controller {
 		
 	public function formAddPenempatan()
 		{
-			$dtBarang 	= $this->model->selectdata3('nama_barang','barang')->result_array();
-			$dtLokasi 	= $this->model->selectdata3('nama_ruang','lokasi')->result_array();
-			
-			$data = array(
-				'dtBarang'	=> $dtBarang,
-				'dtLokasi'	=> $dtLokasi,
-				
-				);
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/dtMaster/penempatan/formAdd', $data);
+			$this->load->view('admin/inventaris/dtMaster/penempatan/formAdd');
 		}
 		
-	public function actionAddPenempatan()
-	{
-
-		$no						= $this->input->post('no');
-		$nama_barang			= $this->input->post('nama_barang');
-		$nama_ruang 			= $this->input->post('nama_ruang');
-		
-		
-		$data 		= array(
-							'nama_barang' 		=> $nama_barang,
-							'nama_ruang' 		=> $nama_ruang,
-							);
-					//print_r($data);
-					//exit;
-		$this->model->insertdata('penempatan', $data);
-		redirect('admin/dtPenempatan?message=input');
-	}
-		
-	public function formEditPenempatan($no)
+	public function formEditPenempatan($nama_barang)
 		{
-			$where = array('no' => $no);
+			$where = array('nama_barang' => $nama_barang);
 			$data['penempatan'] = $this->model->edit_data($where,'penempatan')->result();
 			$this->load->view('admin/header');
 			$this->load->view('admin/inventaris/dtMaster/penempatan/formEdit', $data);
-		}
-
-	public function updatePenempatan()
-		{
-		
-		$no 					= $this->input->post('no');
-		$nama_barang			= $this->input->post('nama_barang');
-		$nama_ruang 			= $this->input->post('nama_ruang');
-		
-		 
-			$data 		= array(
-							'nama_ruang' 		=> $nama_ruang,
-							'nama_barang' 		=> $nama_barang,
-								);
-		 
-			$where = array('no' => $no);
-		 //print_r($data);
-		 //exit;
-			$this->model->update_data($where,$data, 'penempatan');
-			redirect('admin/dtPenempatan?message=update');
-		}
-	
-	public function deleteDataPenempatan($no = '')
-		{
-			$deldata	= $this->model->deldata('penempatan',array('no' => $no));
-			redirect('admin/dtPenempatan?message=delete');
-		}
+		}	
 	
 	public function dtPengguna()
 		{
@@ -919,58 +898,12 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/inventaris/dtMaster/pengguna/formAdd');
 		}
 		
-	public function actionAddPengguna()
-	{
-
-		$username 			= $this->input->post('username');
-		$full_name			= $this->input->post('full_name');
-		$password				= $this->input->post('password');
-		
-		
-		$data 		= array(
-							'username' 		=> $username,
-							'full_name' 		=> $full_name,
-							'password' 		=> $password,
-							
-							);
-					//print_r($data);
-					//exit;
-		$this->model->insertdata('user', $data);
-		redirect('admin/dtPengguna?message=input');
-	}
-		
 	public function formEditPengguna($id_petugas)
 		{
 			$where = array('id_petugas' => $id_petugas);
 			$data['user'] = $this->model->edit_data($where,'user')->result();
 			$this->load->view('admin/header');
 			$this->load->view('admin/inventaris/dtMaster/pengguna/formEdit', $data);
-		}
-		
-	public function updatePengguna()
-		{
-		$id_petugas 			= $this->input->post('id_petugas');
-		$username 			= $this->input->post('username');
-		$full_name			= $this->input->post('full_name');
-		$password				= $this->input->post('password');
-		
-		 
-			$data 		= array(
-							'username' 		=> $username,
-							'full_name' 		=> $full_name,
-							'password' 		=> $password,
-								);
-		 
-			$where = array('id_petugas' => $id_petugas);
-		 //print_r($data);exit;
-			$this->model->update_data($where,$data,'user');
-			redirect('admin/dtPengguna?message=update');
-		}
-	
-	public function deleteDataPengguna($id_petugas = '')
-		{
-			$deldata	= $this->model->deldata('user',array('id_petugas' => $id_petugas));
-			redirect('admin/dtPengguna?message=delete');
 		}
 		
 /*	public function formAddDormitoryTransaction()
@@ -984,7 +917,6 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/header');
 			$this->load->view('admin/dormitory/dtTransaksi/formAdd', $data);
 		}*/
-	
 		
 	public function dtTransaksiPeminjaman()
 		{
@@ -992,226 +924,64 @@ class Admin extends CI_Controller {
 			//$data = array(
 			//'dtPengguna'	=> $dtPengguna,
 			//	);
-			 //$this->load->view('admin/inventaris/transaksi/peminjaman/peminjaman_data', $data);
 			$dtKaryawan = $this->model->selectdata3('nik','karyawan')->result_array();
-			//print_r($maxjumlahbarang) ; exit ;
 			$dtBarang 	= $this->model->selectdata3('kode_barang','barang')->result_array();
 			$data = array(
 						  'dtKaryawan'	=> $dtKaryawan,
 						  'dtBarang'	=> $dtBarang,
 						  );
-			$data['autonumber'] = $this->model->AutoNumbering();
-			$data['tglpinjam']  = date('Y-m-d');
-			$data['tglkembali'] = date('Y-m-d', strtotime('+7 day', strtotime($data['tglpinjam'])));
 			$this->load->view('admin/header');
 			$this->load->view('admin/inventaris/transaksi/peminjaman/peminjaman_data', $data);
 		}
-public function actionAddTransaksiInventaris()
+
+	public function actionAddTransaksiInventaris()
 	{
-		date_default_timezone_set("Asia/Bangkok");
-		$waktu_simpan	= date("Y-m-d H:i:s") ;
-		$jumlah			= $this->input->post('jumlah');
+
+		$nik 			= $this->input->post('nik');
+		$kode_barang	= $this->input->post('kode_barang');
 		$jml_barang		= $this->input->post('jml_barang');
 		
-		if($jml_barang > $jumlah)
-			
-		{
-			redirect('admin/dtTransaksiPeminjaman?message=gagal');
-		
-	    }else{
-        //ambil data tmp lakukan looping . setelah looping lakukan insert ke table transaksi
-      
-            
-            $data = array(
-                'id_transaksi'     => $this->input->post('id_transaksi'),
-                'nik'              => $this->input->post('nik'),
-				'waktu_simpan'	=> $waktu_simpan,
-				'nama' 			=>  $this->input->post('nama'),
-				'nama_barang' 			=> $this->input->post('nama_barang'),
-                'kode_barang'       => $this->input->post('kode_barang'),
-				'jml_barang' 	=> $this->input->post('jml_barang'),
-                'tanggal_pinjam'   => $this->input->post('tanggal_pinjam'),
-                'tanggal_kembali'  => $this->input->post('tanggal_kembali'),
-                'status'           => "N",
-                
-            );
-           // print_r($data);
-           
-            //insert data ke table transaksi
-            $this->model->insertdata('transaksi',$data); 
-
+		$data 		= array(
+							'nik' 			=> $nik,
+							'kode_barang' 	=> $kode_barang,
+							'jml_barang' 	=> $jml_barang,
+							);
+					//print_r($data);
+					//exit;
+		$this->model->insertdata('transaksi', $data);
 		redirect('admin/dtTransaksiPeminjaman?message=input');
-            
-            
-           
-        }
-}	
-
-
-	
-	public function dtTransaksiPengembalian()
-		{
-			//$dtPengguna = $this->model->selectdata('user')->result_array();
-			//$data = array(
-			//'dtPengguna'	=> $dtPengguna,
-			//	);
-			//$dtKaryawan = $this->model->selectdata3('nik','karyawan')->result_array();
-			//$sql = $this->db->query("select nik, nama, status from transaksi where status = 'N'");
-			//$dtTransaksi1 = $this->model->selectdata3('kode_barang','transaksi')->result_array();
-			//print_r($dtTransaksi) ; exit ;
-			//$dtBarang 	= $this->model->selectdata3('kode_barang','barang')->result_array();
-			
-			$dtTransaksi = $this->model->selectdata3('kode_barang,id_transaksi','transaksi')->result_array();
-			$dtNik = $this->model->selectnik('nik','transaksi')->result_array();
-		$data = array(
-						 'dtTransaksi'	=> $dtTransaksi,
-						 'dtNik'	=> $dtNik,
-						 
-						  );
-		
-			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/transaksi/pengembalian/pengembalian_data', $data);
-
-		
-		}
-		
-		
-	public function simpan_transaksi()
-		{
-		
-        $simpan = array(
-            'id_transaksi'     => $this->input->post('no_transaksi'),
-            'tgl_pengembalian' => date('Y-m-d'),
-			 'id_petugas'     => $this->input->post('id_petugas'),
-            
-        );
-        $this->model->insertPengembalian($simpan);
-
-        //update status peminjaman dari N menjadi Y
-        $id_transaksi = $this->input->post('id_transaksi');
-        $data = array(
-            'status' => "Y"
-        );
-      
-
-        $this->model->update($id_transaksi, $data);	
-		redirect('admin/dtTransaksiPengembalian?message=input');		
-        }
-		
-
-
-public function cari_nik()
-	{
-		$nik = $this->input->post('nik');
-        // $nik = 121210;
-        $data['pencarian'] = $this->model->SearchNik($nik);
-		
-		$this->load->view('admin/inventaris/transaksi/pengembalian/pengembalian_pencarian', $data);
 	}
-	public function cari_transaksi()
-    {
-        $no_transaksi = $this->input->get_post('no_transaksi');
-        // $no_transaksi = 20180411002;
-        $hasil = $this->model->SearchTransaksi($no_transaksi);
-        if($hasil->num_rows() > 0) {
-            $dtrans = $hasil->row_array();
-            echo $dtrans['nik']."|".$dtrans['tanggal_pinjam']."|".$dtrans['tanggal_kembali']."|".$dtrans['nama']."|".$dtrans['kode_barang'];
-        }
-    }
-	public function tampil_barang()
-    {
-        
-        $no_transaksi = $this->input->get('no_transaksi');
-        $data['barang'] = $this->Mod_pengembalian->showBarang($no_transaksi)->result();
-        $this->load->view('admin/pengembalian_tampil_barang', $data);
-        
-    }
+	
 	public function laporanTransaksiInventaris()
 		{
-			/*
 			//$dtPengguna = $this->model->selectdata('user')->result_array();
 			//$data = array(
 			//'dtPengguna'	=> $dtPengguna,
 			//	);
-			$dtTransaksi = $this->model->selectdata('transaksi')->result_array();
-			echo '<pre>'; print_r($dtTransaksi);exit;
-			$data = array( 
-			'dtTransaksi'	=> $dtTransaksi,
-						);
-			*/
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/laporan/peminjaman/laporanTransaksiInventaris');
+			$this->load->view('admin/inventaris/laporan/laporanTransaksiInventaris');
 		}
 		
 	public function searchLaporanTransaksiInventaris()
 		{
-			$id_transaksi 			= $this->input->post('id_transaksi');
-			$nama			= $this->input->post('nama');
-			
-			//$tanggal_pinjam		= $this->input->post('tanggal_pinjam'); 
-			//$tanggal_kembali		= $this->input->post('tanggal_kembali'); 
-			
-
-			//$datepicker					= str_replace('/', '-', $_POST['datepicker']);
-			//$datepicker1				= str_replace('/', '-', $_POST['datepicker1']);
-			//$tanggal_pinjam				= date("Y-m-d", strtotime('datepicker'));
-			//$tanggal_kembali			= date("Y-m-d", strtotime('datepicker1'));
-			
-			//print_r($tanggal_pinjam); exit;
-			$data 		= array('results' => $this->model->searchdatee($id_transaksi, $nama),
-							);
+			//$dtPengguna = $this->model->selectdata('user')->result_array();
+			//$data = array(
+			//'dtPengguna'	=> $dtPengguna,
+			//	);
 			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/laporan/peminjaman/searchLaporanTransaksiInventaris', $data);
+			$this->load->view('admin/inventaris/laporan/searchLaporanTransaksiInventaris');
 		}
-		
-	public function laporanTransaksiPengembalian()
-		{
-			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/laporan/pengembalian/laporanTransaksiPengembalian');
-		}
-	/*
-	public function searchTransaksiPengembalian()
-		{
-			
-			$id_transaksi			= $this->input->post('id_transaksi');
-			$nama		= $this->input->post('nama');
-			
-			$data		= array('results' => $this->model->tanggal($id_transaksi, $nama),
-						);
-			
-			$this->load->view('admin/header');
-			$this->load->view('admin/inventaris/laporan/pengembalian/searchTransaksiPengembalian', $data);
-		}
-		*/
-	public function cari_pengembalian()
-    {
 
-        $tanggal1 = $this->input->post('tanggal1');
-        $tanggal2 = $this->input->post('tanggal2');
-        $data['hasil_search'] = $this->model->searchPengembalian($tanggal1,$tanggal2);
-        $this->load->view('admin/inventaris/laporan/pengembalian/pengembalian_search', $data);
-        
-    }
 
-    public function detail_pengembalian()
-    {
-        $id_transaksi = $this->input->post('id_transaksi');
-        $data['title']               = "Detail Pengembalian";
-        $data['pengembalian']        = $this->model->detailPengembalian($id_transaksi)->row_array(); 
-        $data['detailjpengembalian'] = $this->model->detailPengembalian($id_transaksi)->result();
-        $this->load->view('admin/inventaris/laporan/pengembalian/pengembalian_detail', $data);
-
-    }
-		
 /*======================================================================================================================
 
 													INVENTARIS
 
 =======================================================================================================================*/
-	
-/*=====================================================================================================================
+/*======================================================================================================================
 
-												Bus Transaksi
+													BUS
+
 =======================================================================================================================*/
 
 public function dtBus()
@@ -1269,17 +1039,17 @@ public function dtBus()
 
 	public function updateBus()
 		{
-			$no_stnk 		= $this->input->post('no_stnk');
-			$nama_bus		= $this->input->post('nama_bus');
-			$tipe_bus		= $this->input->post('tipe_bus');
+			$no_stnk 				= $this->input->post('no_stnk');
+			$nama_bus				= $this->input->post('nama_bus');
+			$tipe_bus				= $this->input->post('tipe_bus');
 			$jumlah_penumpang		= $this->input->post('jumlah_penumpang');
-			$keterangan		= $this->input->post('keterangan');
+			$keterangan				= $this->input->post('keterangan');
 		 
 			$data 		= array(
 								'no_stnk' 				=> $no_stnk,
 								'nama_bus' 				=> $nama_bus,
 								'tipe_bus' 				=> $tipe_bus,
-								'jumlah_penumpang' 			=> $jumlah_penumpang,
+								'jumlah_penumpang' 		=> $jumlah_penumpang,
 								'keterangan' 			=> $keterangan,
 								);
 		 
@@ -1294,97 +1064,101 @@ public function dtBus()
 			$deldata	= $this->model->deldata('tbl_bus',array('no_stnk' => $no_stnk));
 			redirect('admin/dtBus?message=delete');
 		}
-		
-	/*	
-		public function dtSiswa()
+/*======================================================================================================================
+
+													BUS
+
+=======================================================================================================================*/
+/*======================================================================================================================
+
+													HARGA BUS
+
+=======================================================================================================================*/
+	public function dtHarga()
 		{
-			$dtSiswa = $this->model->selectdata('tbl_siswa')->result_array();
+			$dtHarga = $this->model->selectdata('tbl_biaya')->result_array();
 			$data = array(
-			'dtSiswa'	=> $dtSiswa,
+			'dtHarga'	=> $dtHarga,
 				);
 			$this->load->view('admin/header');
-			$this->load->view('admin/bus/master/siswa/dtSiswa', $data);
+			$this->load->view('admin/bus/master/harga/dtHarga', $data);
 		}
-		
-	public function formAddSiswa()
+	public function formAddHarga()
 		{
 			$this->load->view('admin/header');
-			$this->load->view('admin/bus/master/siswa/formAdd');
-		}
-
-	public function actionAddSiswa()
-		{
-
-			$nis 				= $this->input->post('nis');
-			$nama_siswa 		= $this->input->post('nama_siswa');
-			$nama_orangtua 		= $this->input->post('nama_orangtua');
-			$kelas 				= $this->input->post('kelas');
-			$jenis_kelamin		= $this->input->post('jenis_kelamin');
-			$tempat_lahir		= $this->input->post('tempat_lahir');
-			$tanggal_lahir		= $this->input->post('tanggal_lahir');
-			$alamat				= $this->input->post('alamat');
-			
-			$data 		= array(
-								'nis' 				=> $nis,
-								'nama_siswa' 		=> $nama_siswa,
-								'nama_orangtua' 	=> $nama_orangtua,
-								'kelas' 			=> $kelas,
-								'jenis_kelamin' 	=> $jenis_kelamin,
-								'tempat_lahir' 		=> $tempat_lahir,
-								'tanggal_lahir' 	=> $tanggal_lahir,
-								'alamat' 			=> $alamat,
-								);
-						//print_r($data);
-						//exit;
-			$this->model->insertdata('tbl_siswa', $data);
-			redirect('admin/dtSiswa?message=input');
+			$this->load->view('admin/bus/master/harga/formAdd');
 		}
 		
-	public function formEditSiswa($nis)
-		{
-			$where = array('nis' => $nis);
-			$data['tbl_siswa'] = $this->model->edit_data($where,'tbl_siswa')->result();
-			$this->load->view('admin/header');
-			$this->load->view('admin/bus/master/siswa/formEdit', $data);
-		}
+	public function actionAddHarga()
+	{
 
-	public function updateSiswa()
+		$siswa 				= $this->input->post('siswa');
+		$tujuan				= $this->input->post('tujuan');
+		$frekuensi			= $this->input->post('frekuensi');
+		$perjalanan			= $this->input->post('perjalanan');
+		$harga				= $this->input->post('harga');
+		
+		$data 		= array(
+							'siswa' 			=> $siswa,
+							'tujuan' 			=> $tujuan,
+							'frekuensi' 		=> $frekuensi,
+							'perjalanan' 		=> $perjalanan,
+							'harga' 			=> $harga,
+							
+							);
+					//print_r($data);
+					//exit;
+		$this->model->insertdata('tbl_biaya', $data);
+		redirect('admin/dtHarga?message=input');
+	}
+	public function formEditHarga($id)
 		{
-			$nis 				= $this->input->post('nis');
-			$nama_siswa 		= $this->input->post('nama_siswa');
-			$nama_orangtua 		= $this->input->post('nama_orangtua');
-			$kelas 				= $this->input->post('kelas');
-			$jenis_kelamin		= $this->input->post('jenis_kelamin');
-			$tempat_lahir		= $this->input->post('tempat_lahir');
-			$tanggal_lahir		= $this->input->post('tanggal_lahir');
-			$alamat				= $this->input->post('alamat');
-		 
-			$data 		= array(
-								'nis' 				=> $nis,
-								'nama_siswa' 		=> $nama_siswa,
-								'nama_orangtua' 	=> $nama_orangtua,
-								'kelas' 			=> $kelas,
-								'jenis_kelamin' 	=> $jenis_kelamin,
-								'tempat_lahir' 		=> $tempat_lahir,
-								'tanggal_lahir' 	=> $tanggal_lahir,
-								'alamat' 			=> $alamat,
-								);
-		 
-			$where = array('nis' => $nis);
-		 
-			$this->model->update_data($where,$data,'tbl_siswa');
-			redirect('admin/dtSiswa?message=update');
+			$where = array('id' => $id);
+			$data['tbl_biaya'] = $this->model->edit_data($where,'tbl_biaya')->result();
+			$this->load->view('admin/header');
+			$this->load->view('admin/bus/master/harga/formEdit', $data);
 		}
 	
-	public function deleteSiswa($nis = '')
+	public function updateHarga()
 		{
-			$deldata	= $this->model->deldata('tbl_siswa',array('nis' => $nis));
-			redirect('admin/dtSiswa?message=delete');
+			$id 	 			= $this->input->post('id');
+			$siswa 				= $this->input->post('siswa');
+			$tujuan				= $this->input->post('tujuan');
+			$frekuensi			= $this->input->post('frekuensi');
+			$perjalanan			= $this->input->post('perjalanan');
+			$harga				= $this->input->post('harga');
+		 
+			$data 		= array(
+								
+							'siswa' 			=> $siswa,
+							'tujuan' 			=> $tujuan,
+							'frekuensi' 		=> $frekuensi,
+							'perjalanan' 		=> $perjalanan,
+							'harga' 			=> $harga,
+
+								);
+		 
+			$where = array('id' => $id);
+		 
+			$this->model->update_data($where,$data,'tbl_biaya');
+			redirect('admin/dtHarga?message=update');
 		}
-		
-	*/
-	/*
-	public function dtTransaksiBus()
+	public function deleteHarga($id = '')
+		{
+			$deldata	= $this->model->deldata('tbl_biaya',array('id' => $id));
+			redirect('admin/dtHarga?message=delete');
+		}
+/*======================================================================================================================
+
+													HARGA BUS
+
+=======================================================================================================================*/			
+/*======================================================================================================================
+
+												TRANSAKSI BUS
+
+=======================================================================================================================*/
+public function dtTransaksiBus()
 		{
 			$dtTransaksiBus = $this->model->selectdata('tbl_transaksi_bus')->result_array();
 			$data = array(
@@ -1397,10 +1171,16 @@ public function dtBus()
 	public function formAddTransaksiBus()
 		{
 			$dtTransaksiBus = $this->model->selectdata2('unit_name','TblUnitSekolah WHERE unit_not_active<>"Y"')->result_array();
+			$dtstnk			= $this->model->selectdata0('tbl_bus','no_stnk')->result_array();
+			$dtTipeBus		= $this->model->selectdata0('tbl_bus','tipe_bus')->result_array();
+			$dtSiswa		= $this->model->selectsiswa('siswa','tbl_biaya')->result_array();
+			$dtTujuan		= $this->model->selectsiswa('tujuan','tbl_biaya')->result_array();
 			
 			$data = array(
 						  'dtTransaksiBus'		=> $dtTransaksiBus,
-						 
+						  'dtstnk'				=> $dtstnk,
+						  'dtTipeBus'			=> $dtTipeBus,
+						  'dtSiswa'				=> $dtSiswa,
 						  );
 			$this->load->view('admin/header');
 			$this->load->view('admin/bus/master/transaksi/formAdd', $data);
@@ -1410,44 +1190,52 @@ public function dtBus()
 		{
 
 			$id_transaksi 				= $this->input->post('id_transaksi');
-			$nama 						= $this->input->post('nama');
-			$nama2 						= $this->input->post('nama2');
-			$nama3						= $this->input->post('nama3');
-			$nama4 						= $this->input->post('nama4');
-			$nama5 						= $this->input->post('nama5');
+			$siswa_nopin				= $this->input->post('siswa_nopin');
+			$siswa_nopin2				= $this->input->post('siswa_nopin2');
+			$siswa_nopin3				= $this->input->post('siswa_nopin3');
+			$siswa_nopin4				= $this->input->post('siswa_nopin4');
+			$siswa_nopin5				= $this->input->post('siswa_nopin5');
 			$jenjang 					= $this->input->post('jenjang');
 			$jenjang2 					= $this->input->post('jenjang2');
 			$jenjang3 					= $this->input->post('jenjang3');
-			$jenjang4					= $this->input->post('jenjang4');
+			$jenjang4 					= $this->input->post('jenjang4');
 			$jenjang5 					= $this->input->post('jenjang5');
-			$tipe_bus 					= $this->input->post('tipe_bus');
-			$nama_bus					= $this->input->post('nama_bus');
+			$nama 						= $this->input->post('nama');
+			$nama2 						= $this->input->post('nama2');
+			$nama3 						= $this->input->post('nama3');
+			$nama4 						= $this->input->post('nama4');
+			$nama5 						= $this->input->post('nama5');
 			$parent						= $this->input->post('parent');
 			$parent2					= $this->input->post('parent2');
 			$parent3					= $this->input->post('parent3');
 			$parent4					= $this->input->post('parent4');
 			$parent5					= $this->input->post('parent5');
-			$class					= $this->input->post('class');
-			$class2					= $this->input->post('class2');
-			$class3					= $this->input->post('class3');
-			$class4					= $this->input->post('class4');
-			$class5					= $this->input->post('class5');
+			$class						= $this->input->post('class');
+			$class2						= $this->input->post('class2');
+			$class3						= $this->input->post('class3');
+			$class4						= $this->input->post('class4');
+			$class5						= $this->input->post('class5');
+			$tipe_bus 					= $this->input->post('tipe_bus');
+			$nama_bus					= $this->input->post('nama_bus');
 			
 			
 			$data 		= array(
 								'id_transaksi' 				=> $id_transaksi,
-								'nama' 						=> $nama,
-								'nama2' 						=> $nama2,
-								'nama3' 						=> $nama3,
-								'nama4' 						=> $nama4,
-								'nama5' 						=> $nama5,
+								'siswa_nopin'				=> $siswa_nopin,
+								'siswa_nopin2'				=> $siswa_nopin2,
+								'siswa_nopin3'				=> $siswa_nopin3,
+								'siswa_nopin4'				=> $siswa_nopin4,
+								'siswa_nopin5'				=> $siswa_nopin5,
 								'jenjang' 					=> $jenjang,
 								'jenjang2' 					=> $jenjang2,
 								'jenjang3' 					=> $jenjang3,
 								'jenjang4' 					=> $jenjang4,
 								'jenjang5' 					=> $jenjang5,
-								'tipe_bus' 					=> $tipe_bus,		
-								'nama_bus' 					=> $nama_bus,
+								'nama' 						=> $nama,
+								'nama2' 					=> $nama2,
+								'nama3' 					=> $nama3,
+								'nama4' 					=> $nama4,
+								'nama5' 					=> $nama5,
 								'parent' 					=> $parent,
 								'parent2' 					=> $parent2,
 								'parent3' 					=> $parent3,
@@ -1458,6 +1246,8 @@ public function dtBus()
 								'class3' 					=> $class3,
 								'class4' 					=> $class4,
 								'class5' 					=> $class5,
+								'tipe_bus' 					=> $tipe_bus,
+								'nama_bus' 					=> $nama_bus,
 								
 								);
 						//print_r($data);
@@ -1468,8 +1258,16 @@ public function dtBus()
 		
 	public function formTransaksiEditBus($id_transaksi)
 		{
+			$dtTransaksiBus = $this->model->selectdata2('unit_name','TblUnitSekolah WHERE unit_not_active<>"Y"')->result_array();
 			$where = array('id_transaksi' => $id_transaksi);
-			$data['tbl_transaksi_bus'] = $this->model->edit_data($where,'tbl_transaksi_bus')->result();
+			$data1['tbl_transaksi_bus'] = $this->model->edit_data($where,'tbl_transaksi_bus')->result();
+
+			$data = array(
+							'data1'						=> $data1,
+							'dtTransaksiBus'			=> $dtTransaksiBus,
+							
+				);
+
 			$this->load->view('admin/header');
 			$this->load->view('admin/bus/master/transaksi/formEdit', $data);
 		}
@@ -1477,42 +1275,50 @@ public function dtBus()
 	public function updateTransaksiBus()
 		{
 			$id_transaksi 				= $this->input->post('id_transaksi');
-			$nama 						= $this->input->post('nama');
-			$nama2 						= $this->input->post('nama2');
-			$nama3						= $this->input->post('nama3');
-			$nama4 						= $this->input->post('nama4');
-			$nama5 						= $this->input->post('nama5');
+			$siswa_nopin				= $this->input->post('siswa_nopin');
+			$siswa_nopin2				= $this->input->post('siswa_nopin2');
+			$siswa_nopin3				= $this->input->post('siswa_nopin3');
+			$siswa_nopin4				= $this->input->post('siswa_nopin4');
+			$siswa_nopin5				= $this->input->post('siswa_nopin5');
 			$jenjang 					= $this->input->post('jenjang');
 			$jenjang2 					= $this->input->post('jenjang2');
 			$jenjang3 					= $this->input->post('jenjang3');
-			$jenjang4					= $this->input->post('jenjang4');
+			$jenjang4 					= $this->input->post('jenjang4');
 			$jenjang5 					= $this->input->post('jenjang5');
-			$tipe_bus 					= $this->input->post('tipe_bus');
-			$nama_bus					= $this->input->post('nama_bus');
+			$nama 						= $this->input->post('nama');
+			$nama2 						= $this->input->post('nama2');
+			$nama3 						= $this->input->post('nama3');
+			$nama4 						= $this->input->post('nama4');
+			$nama5 						= $this->input->post('nama5');
 			$parent						= $this->input->post('parent');
 			$parent2					= $this->input->post('parent2');
 			$parent3					= $this->input->post('parent3');
 			$parent4					= $this->input->post('parent4');
 			$parent5					= $this->input->post('parent5');
-			$class					= $this->input->post('class');
-			$class2					= $this->input->post('class2');
-			$class3					= $this->input->post('class3');
-			$class4					= $this->input->post('class4');
-			$class5					= $this->input->post('class5');
+			$class						= $this->input->post('class');
+			$class2						= $this->input->post('class2');
+			$class3						= $this->input->post('class3');
+			$class4						= $this->input->post('class4');
+			$class5						= $this->input->post('class5');
+			$tipe_bus 					= $this->input->post('tipe_bus');
+			$nama_bus					= $this->input->post('nama_bus');
+		 
 			$data 		= array(
-								'id_transaksi' 				=> $id_transaksi,
-								'nama' 						=> $nama,
-								'nama2' 						=> $nama2,
-								'nama3' 						=> $nama3,
-								'nama4' 						=> $nama4,
-								'nama5' 						=> $nama5,
+								'siswa_nopin'				=> $siswa_nopin,
+								'siswa_nopin2'				=> $siswa_nopin2,
+								'siswa_nopin3'				=> $siswa_nopin3,
+								'siswa_nopin4'				=> $siswa_nopin4,
+								'siswa_nopin5'				=> $siswa_nopin5,
 								'jenjang' 					=> $jenjang,
 								'jenjang2' 					=> $jenjang2,
 								'jenjang3' 					=> $jenjang3,
 								'jenjang4' 					=> $jenjang4,
 								'jenjang5' 					=> $jenjang5,
-								'tipe_bus' 					=> $tipe_bus,		
-								'nama_bus' 					=> $nama_bus,
+								'nama' 						=> $nama,
+								'nama2' 					=> $nama2,
+								'nama3' 					=> $nama3,
+								'nama4' 					=> $nama4,
+								'nama5' 					=> $nama5,
 								'parent' 					=> $parent,
 								'parent2' 					=> $parent2,
 								'parent3' 					=> $parent3,
@@ -1523,6 +1329,8 @@ public function dtBus()
 								'class3' 					=> $class3,
 								'class4' 					=> $class4,
 								'class5' 					=> $class5,
+								'tipe_bus' 					=> $tipe_bus,
+								'nama_bus' 					=> $nama_bus,
 								);
 		 
 			$where = array('id_transaksi' => $id_transaksi);
@@ -1536,7 +1344,12 @@ public function dtBus()
 			$deldata	= $this->model->deldata('tbl_transaksi_bus',array('id_transaksi' => $id_transaksi));
 			redirect('admin/dtTransaksiBus?message=delete');
 		}
-*/
+/*======================================================================================================================
+
+													BUS
+
+=======================================================================================================================*/
+
 	public function logout()
     {
             $array_items = array(   
