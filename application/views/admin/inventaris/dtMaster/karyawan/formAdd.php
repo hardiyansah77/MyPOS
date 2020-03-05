@@ -78,7 +78,8 @@
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
                 <a href="<?php echo base_url('admin/dtKaryawan');?>" class="btn btn-default">Batal</a>
-                <button type="submit" class="btn btn-info">Simpan</button>
+                <button type="submit"  class="btn btn-info">Simpan</button>
+				
 			  </div>
               </div>
               <!-- /.box-footer -->
@@ -310,7 +311,9 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets/dist/js/demo.js"></script>
 
+
 </body>
 </html>
+
 
 

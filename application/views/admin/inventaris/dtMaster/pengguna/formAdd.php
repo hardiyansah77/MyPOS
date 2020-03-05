@@ -27,7 +27,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal">
+            <form action="<?php echo base_url('admin/actionAddPengguna');?>" method="post" class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
                     <p class="col-sm-2 text-left">Nama Pengguna </p>
@@ -56,7 +56,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
 			  <div class="col-sm-offset-3 col-sm-10">
-                <button type="submit" class="btn btn-default">Batal</button>
+                <a href="<?php echo base_url('admin/dtPengguna');?>" class="btn btn-default">Batal</a>
                 <button type="submit" class="btn btn-info">Simpan</button>
 			  </div>
               </div>

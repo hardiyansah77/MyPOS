@@ -64,7 +64,6 @@
                   <th>Class</th>
                   <th>Room Type</th>
                   <th>Room number</th>
-                  <th>facilities</th>
                   <th>Price</th>
                   <th></th>
                 </tr>
@@ -78,7 +77,6 @@
                   <td><?=$r['class'] ?></td>
                   <td><?=$r['type'] ?></td>
                   <td><?=$r['floor'] ?><?=$r['room_number'] ?></td>
-                  <td><?=$r['facilities']?></td>
                   <td>Rp.<?= number_format($r['price']) ?></td>
                   <td>
 				  <center>

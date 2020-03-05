@@ -8,8 +8,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="#">Transaksi Bus</a></li>
-        <li class="active">Data Bus Transaksi</li>
+        <li><a href="#">Transaksi Busy</a></li>
+        <li class="active">Data Bus Transaski</li>
       </ol>
     </section>
 
@@ -20,7 +20,7 @@
           <!-- /.box -->
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Bus Transaksi</h3>
+              <h3 class="box-title">Data Bus Transaksiy</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -59,11 +59,13 @@
                 <thead>
                 <tr>
                   <th>No.</th>
-                  <th>Jenjang</th>
+                  <th>Id Transaksi</th>
                   <th>Nama</th>
-                  <th>Parent/Guardian of</th>
+                  <th>Jenjang</th>
                   <th>Tipe Bus</th>
                   <th>Nama Bus</th>
+                  <th>Parent</th>
+                  <th>Class</th>
 				  
                   <th></th>
                 </tr>
@@ -72,11 +74,29 @@
                 <?php $no=1; foreach ($dtTransaksiBus  as $r): ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
-                  <td><?=$r['jenjang'] ?></td>
+                  <td><?=$r['id_transaksi'] ?></td>
                   <td><?=$r['nama'] ?></td>
-                  <td><?=$r['parent'] ?></td>
+                  <td><?=$r['nama2'] ?></td>
+                  <td><?=$r['nama3'] ?></td>
+                  <td><?=$r['nama4'] ?></td>
+                  <td><?=$r['nama5'] ?></td>
+                  <td><?=$r['jenjang'] ?></td>
+                  <td><?=$r['jenjang2'] ?></td>
+                  <td><?=$r['jenjang3'] ?></td>
+                  <td><?=$r['jenjang4'] ?></td>
+                  <td><?=$r['jenjang5'] ?></td>
                   <td><?=$r['tipe_bus'] ?></td>
                   <td><?=$r['nama_bus'] ?></td>
+                  <td><?=$r['parent'] ?></td>
+                  <td><?=$r['parent2'] ?></td>
+                  <td><?=$r['parent3'] ?></td>
+                  <td><?=$r['parent4'] ?></td>
+                  <td><?=$r['parent5'] ?></td>
+                  <td><?=$r['class'] ?></td>
+                  <td><?=$r['class2'] ?></td>
+                  <td><?=$r['class3'] ?></td>
+                  <td><?=$r['class4'] ?></td>
+                  <td><?=$r['class5'] ?></td>
                   <td>
 				  <center>
 					<div class="hidden-sm hidden-xs action-buttons">
