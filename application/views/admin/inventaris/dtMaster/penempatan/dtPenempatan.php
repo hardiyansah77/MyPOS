@@ -58,7 +58,8 @@
 			  <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>No.</th>                 
+                  <th>No.</th>
+                  <th>Nomer</th>
                   <th>Nama Barang</th>
                   <th>Nama Ruang</th>
                   <th>Aksi</th>
@@ -67,16 +68,17 @@
                 <tbody>
 				<?php $no=1; foreach ($dtPenempatan  as $r): ?>
                 <tr>
-                  <td><?php echo $no++; ?></td>                                 
+                  <td><?php echo $no++; ?></td>
+                  <td><?=$r['no'] ?></td>
+                  <td><?=$r['nama_ruang'] ?></td>
                   <td><?=$r['nama_barang'] ?></td>
-				  <td><?=$r['nama_ruang'] ?></td>
                   <td>
 				  <center>
 					<div class="hidden-sm hidden-xs action-buttons">
-						<a class="green" href="<?=base_url();?>admin/formEditPenempatan/<?=$r['no'] ?>">
+						<a class="green" href="<?=base_url();?>admin/formEditPenempatan/<?=$r['nama_barang'] ?>">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
-						<a class="red" href="<?=base_url();?>admin/deleteDataPenempatan/<?=$r['no'] ?>">
+						<a class="red" href="#">
 							<i class="ace-icon fa fa-trash-o bigger-130"></i>
 						</a>
 					</div></center>

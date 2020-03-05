@@ -1,71 +1,98 @@
- <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Laporan Peminjaman
+        Form Edit Harga
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Form Laporan Peminjaman</a></li>
-        <li class="active">Laporan Peminjaman</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">Daftar Harga</a></li>
+        <li class="active">Form Edit</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-xs-12">
-          <!-- /.box -->
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Laporan Peminjaman</h3>
+        <!-- left column -->
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Daftar Harga</h3>
             </div>
             <!-- /.box-header -->
-			<form action="<?php echo base_url('admin/searchLaporanTransaksiInventaris');?>" method="post">
-            <div class="box-body">
-			<a href="<?php echo base_url('admin/laporanTransaksiInventaris');?>" class="btn btn-white btn-info btn-bold"><i class="fa"></i> Back</a><br><br>
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Id Transaksi</th>
-                  <th>Nik</th>
-				  <th>Nama</th>
-                  <th>Nama Barang</th>
-                  <th>Kode Barang</th>
-                  <th>Jumlah Barang</th>
-                  <th>Tanggal Pinjam</th>
-                  <th>Tanggal Kembali</th>
-                  <th>Status</th>
-                </tr>
-                </thead>
-                <tbody>
-				<?php $no = 1; foreach($results['query'] as $r){ ?>
-                <tr>
-                  <td><?php echo $no++; ?></td>
-                  <td><?=$r->id_transaksi ?></td>
-                  <td><?=$r->nik ?></td>
-				  <td><?=$r->nama ?></td>
-                  <td><?=$r->nama_barang ?></td>
-                  <td><?=$r->kode_barang ?></td>
-                  <td><?=$r->jml_barang ?></td>
-                  <td><?=$r->tanggal_pinjam ?></td>
-                  <td><?=$r->tanggal_kembali ?></td>
-                  <td><?=$r->status ?></td>
-                  
+            <!-- form start -->
+			<?php foreach ($tbl_biaya  as $data): ?>
+            <form action="<?php echo base_url('admin/updateHarga');?>" method="post" class="form-horizontal">
+              <div class="box-body">
+								<div class="form-group">
+                  <label for="siswa" class="col-sm-3 control-label">Siswa</label>
 
-                </tr>
-				<?php  } ?>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.box-body -->
+                  <div class="col-sm-5">
+                    <input type="text" name="siswa" required value="<?php echo $data->siswa ?>" class="form-control" id="siswa" placeholder="Input Siswa ...">
+                    <input type="hidden" name="id" value="<?php echo $data->id ?>" class="form-control" id="id" placeholder="Input Siswa ...">
+                  </div>
+                </div>
+              <div class="form-group">
+                  <label for="tujuan" class="col-sm-3 control-label">Tujuan</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" name="tujuan" required value="<?php echo $data->tujuan ?>" class="form-control" id="tujuan" placeholder="Input Tujuan ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="frekuensi" class="col-sm-3 control-label">Frekuensi</label>
+
+                  <div class="col-sm-5">
+                    <select name="frekuensi" required class="form-control">
+                    <option value="<?php echo $data->frekuensi ?>"><?php echo $data->frekuensi ?></option>
+                    <option value=""> -- Select Frekuensi -- </option>
+                    <option value="PER SEKALI">PER SEKALI</option>
+                    <option value="PER BULAN">PER BULAN</option>
+                  </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="perjalanan" class="col-sm-3 control-label">Perjalanan</label>
+
+                  <div class="col-sm-5">
+                    <select name="perjalanan" required class="form-control">
+                    <option value="<?php echo $data->perjalanan ?>"><?php echo $data->perjalanan ?></option>
+                    <option value=""> -- Select Perjalanan -- </option>
+                    <option value="1 WAY">1 WAY</option>
+                    <option value="2 WAY">2 WAY</option>
+                  </select>
+                  </div>
+                </div>
+            <div class="form-group">
+                  <label for="harga" class="col-sm-3 control-label">Harga</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" name="harga" required value="<?php echo $data->harga ?>" class="form-control" id="harga" placeholder="Input Harga ...">
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+			  <div class="col-sm-offset-3 col-sm-10">
+                <a href="<?php echo base_url('admin/dtHarga');?> "type="submit" class="btn btn-default">Batal</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="submit" class="btn btn-info">Simpan</button>
+			  </div>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+			<?php endforeach ?>
           </div>
           <!-- /.box -->
+          <!-- general form elements disabled -->
+          <!-- /.box -->
         </div>
-        <!-- /.col -->
+        <!--/.col (right) -->
       </div>
       <!-- /.row -->
     </section>
@@ -280,30 +307,11 @@
 <script src="<?php echo base_url();?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url();?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="<?php echo base_url();?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?php echo base_url();?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<?php echo base_url();?>assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets/dist/js/demo.js"></script>
-<!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
 </body>
 </html>

@@ -66,10 +66,13 @@
               <div class="form-group">
                 <label>Other</label>
               <div class="row">
-                <div class="col-xs-6">
+              <div class="col-xs-4">
+                  <input type="text" name="name" class="form-control" placeholder="name">
+                </div>
+                <div class="col-xs-4">
                   <input type="text" name="class" class="form-control" placeholder="Class">
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-4">
                   <input type="text" name="room" class="form-control" placeholder="Room">
                 </div>
               </div>
@@ -128,7 +131,7 @@
                   <th></th>
                   <th></th>
                   <th></th>
-                  <th>Rp.<?php echo number_format($sum->{"sum(price)"}); ?></th>
+                  <th>Rp.<?php echo number_format($sum1->{"sum(price)"}); ?></th>
                 </tr>
                 </tfoot>
               </table>

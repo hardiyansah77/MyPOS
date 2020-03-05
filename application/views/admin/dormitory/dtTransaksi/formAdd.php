@@ -64,11 +64,26 @@
 					<input type="text" name="class" id ="class" class="form-control" placeholder="Class ..." readonly>
                   </div>
                 </div>
+        <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Room Number</label>
+                  <div class="col-sm-5">
+                    <select name="room_number" id="room_number" class="form-control">
+                    <option> -- Select Room Number -- </option>
+                    <?php foreach ($dtKamarLengkap as $r): ?>
+            <option value="<?=$r['room_number'] ?>"><?=$r['room_number'] ?></option>
+          <?php endforeach ?>
+                  </select>
+                  </div>
+                  <!--<div class="col-sm-5">
+                    <input type="text" name="room_number" id="room_number" class="form-control" id="inputEmail3" placeholder="Input room number ...">
+                  </div>
+                  <button type="submit" class="btn btn-success">Check</button>-->
+                </div>        
 				<div class="form-group">
                   <label for="inputPassword3" class="col-sm-3 control-label">Floor</label>
 
                   <div class="col-sm-5">
-                    <select name="floor" class="form-control">
+                    <select name="floor" id="floor" class="form-control">
                     <option> -- Select floor -- </option>
                     <?php foreach ($dtFloor  as $r): ?>
 						<option value="<?=$r['floor'] ?>"><?=$r['floor'] ?></option>
@@ -80,17 +95,19 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Room  Type</label>
 
                   <div class="col-sm-5">
-                    <select class="form-control" name="type" id="type" required></select>
+                    <input type="text" name="type" id ="type" class="form-control" placeholder="Input Room Type ..." readonly>
+                    <!--<select class="form-control" name="type" id="type" required></select>-->
                   </div>
                 </div>
-				<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Room Number</label>
+        <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">facilities</label>
 
                   <div class="col-sm-5">
-                    <input type="text" name="room_number" class="form-control" id="inputEmail3" placeholder="Input room number ...">
+          <textarea name="facilities" id ="facilities" class="form-control" placeholder="Input facilities ..." readonly>
+          </textarea>
                   </div>
                 </div>
-				<div class="form-group">
+        <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Price</label>
 
                   <div class="col-sm-5">
@@ -453,6 +470,34 @@ $( "select[name='type']" ).change(function () {
 
     }else{
         $('select[name="price"]').empty();
+    }
+});
+
+$( "select[name='room_number']" ).change(function () {
+    var room_numberID1 = $("select#room_number").val();
+  console.log(room_numberID1);
+
+    //if(room_numberID1 && floor) {
+      if(room_numberID1) {
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/CeKkamar');?>",
+            dataType: 'Json',
+            //data: {'floor':floor , 'room_number':room_numberID1},
+            data: {'room_number':room_numberID1},
+             success: function(data) {
+                $('#facilities').val(data.facilities)
+                $('#price').val(data.price)
+                $('#type').val(data.type)
+                $('#floor').val(data.floor)
+                //$('#room_number').val(data.room_number)
+                console.log(data);
+            }
+        });
+
+
+    }else{
+        $('select[name="room_number"]').empty();
     }
 });
 

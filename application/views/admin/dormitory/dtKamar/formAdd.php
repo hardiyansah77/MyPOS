@@ -1,71 +1,92 @@
- <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Laporan Peminjaman
-        <small> </small>
+        Form Add 
+        <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="#">Forms Laporan</a></li>
-        <li class="active">Laporan Peminjaman</li>
+        <li><a href="#">Data Kamar</a></li>
+        <li class="active">Form Add</li>
       </ol>
     </section>
-	<!-- /.test -->
-		<!-- /.test -->
+
     <!-- Main content -->
     <section class="content">
-	<div class="box box-default">
-        <div class="box-header with-border">
-          <h3 class="box-title">Search Laporan Peminjaman</h3>
+      <div class="row">
+        <!-- left column -->
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Data Kamar</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form action="<?php echo base_url('admin/actionAddKamar');?>" method="post" class="form-horizontal">
+            <?php 
+                        if(isset($_GET['message'])){
+                          $message = $_GET['message'];
+                          if($message == "gagal"){
+                            echo '<div class="alert alert-block alert-success">
+                              <button type="button" class="close" data-dismiss="alert">
+                                <i class="ace-icon fa fa-times"></i>
+                              </button>
+                                <i class="ace-icon fa fa-check green"></i>
+                                  Nomor Kamar Sudah Digunakan.
+                            </div>';
+                          }
+                        }
+                      ?>
+              <div class="box-body">
+              <div class="form-group">
+                    <p class="col-sm-3 control-label">Floor </p>
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                    <div class="col-sm-5">
+                        <select name="floor" id="floor" class="form-control">
+                    <option> -- Select Floor -- </option>
+                    <?php foreach ($dtFloor as $r): ?>
+            <option value="<?=$r['floor'] ?>"><?=$r['floor'] ?></option>
+          <?php endforeach ?>
+                  </select>
+                    </div>
+                </div>
+              <div class="form-group">
+                    <p class="col-sm-3 control-label">Type </p>
+                  <div class="col-sm-5">
+                    <select class="form-control" name="id" id="type" required></select>
+                    <input type="hidden" name="flag" class="form-control" autocomplete="off" placeholder="flag">
+                  </div>
+
+                </div>
+								<div class="form-group">
+                    <p class="col-sm-3 control-label">Room Number </p>
+
+                    <div class="col-sm-5">
+                        <input type="text" name="room_number" class="form-control" autocomplete="off" placeholder="room number">
+                    </div>
+                </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+			  <div class="col-sm-offset-3 col-sm-10">
+                <a href="<?php echo base_url('admin/dtKamarLengkap');?> "type="submit" class="btn btn-default">Batal</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="submit" class="btn btn-info">Simpan</button>
+			  </div>
+              </div>
+              <!-- /.box-footer -->
+            </form>
           </div>
+          <!-- /.box -->
+          <!-- general form elements disabled -->
+          <!-- /.box -->
         </div>
-        <div class="box-body">
-		<form action="<?php echo base_url('admin/searchLaporanTransaksiInventaris');?>" method="post">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-				<div class="form-group">
-                <label>Tanggal awal:</label>
-
-                <div class="input-group col-sm-12">
-                  <div class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
-                  </div>
-                  <input type="date" name="tgl_pinjam"  class="form-control pull-right"> 
-                </div>
-                <!-- /.input group -->
-              </div>
-              </div>
-            </div>
-			<div class="col-md-6">
-              <div class="form-group">
-				<div class="form-group">
-                <label>Tanggal akhir:</label>
-
-                <div class="input-group col-sm-12">
-                  <div class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
-                  </div>
-                  <input type="date" name="tgl_kembali"  class="form-control pull-right"> 
-                </div>
-                <!-- /.input group -->
-              </div>
-              </div>
-            </div>
-          </div><br>
-		 <center><button type="submit" class="btn btn-block btn-primary">Search</button></center>
-          <!-- /.row -->
-        </div>
+        <!--/.col (right) -->
       </div>
-	  
-      <!-- /.tabble if need -->
-	  
+      <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
@@ -278,103 +299,87 @@
 <script src="<?php echo base_url();?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url();?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="<?php echo base_url();?>assets/plugins/input-mask/jquery.inputmask.js"></script>
-<script src="<?php echo base_url();?>assets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="<?php echo base_url();?>assets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/moment/min/moment.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-<script src="<?php echo base_url();?>assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<script src="<?php echo base_url();?>assets/plugins/iCheck/icheck.min.js"></script>
-<!-- DataTables -->
-<script src="<?php echo base_url();?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?php echo base_url();?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<?php echo base_url();?>assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets/dist/js/demo.js"></script>
-<!-- page script -->
-<script>
-  $(function () {
-	 //Initialize Select2 Elements
-    $('.select2').select2()
+<script type="text/javascript">
 
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
+$( "select[name='floor']" ).change(function () {
+    var floorID = $(this).val();
 
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' }})
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+
+    if(floorID) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getFloor');?>",
+      //type: "POST",
+            dataType: 'json',
+            data: {'floor':floorID},
+        //data: "id=" + floorID,
+
+             success: function(data) {
+        //console.log(data);
+                $('select[name="id"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                });
+            },
+       error: function(jqXHR, exception) {
+            //alert('[jqXHR:' + jqXHR + '], [textStatus:' + textStatus + '], [thrownError:' + errorThrown + '])');
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status == 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status == 500) {
+                alert('Internal Server Error [500].');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (exception === 'timeout') {
+                alert('Time out error.');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error.\n' + jqXHR.responseText);
+            }
         },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
+        });
 
-    //Date picker
-    $('#datepicker').datepicker({
-      autoclose: true
-    })
 
-    //iCheck for checkbox and radio inputs
-    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass   : 'iradio_minimal-blue'
-    })
-    //Red color scheme for iCheck
-    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-      checkboxClass: 'icheckbox_minimal-red',
-      radioClass   : 'iradio_minimal-red'
-    })
-    //Flat red color scheme for iCheck
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass   : 'iradio_flat-green'
-    })
+    }else{
+        $('select[name="id"]').empty();
+    }
+});
 
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
+$( "select[name='siswa_nopin']" ).change(function () {
+    var jenjangID1 = $("select#jenjang").val();
+    var siswa_nopin = $(this).val();
+  console.log(jenjangID1);
 
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false
-    })
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
+    if(jenjangID1 && siswa_nopin) {
+
+
+        $.ajax({
+            url: "<?php echo base_url('ajax/getDt');?>",
+            dataType: 'Json',
+            data: {'siswa_nopin':siswa_nopin , 'jenjang':jenjangID1},
+             success: function(data) {
+                $('#parent').val(data.parent)
+                $('#class').val(data.class)
+                $('#gender').val(data.gender)
+                $('#nama').val(data.nama)
+            }
+        });
+
+
+    }else{
+        $('select[name="type"]').empty();
+    }
+});
+
 </script>
 </body>
 </html>

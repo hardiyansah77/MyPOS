@@ -78,7 +78,7 @@
 						<a class="green" href="<?=base_url();?>admin/formEditDepartemen/<?=$r['id_departemen'] ?>">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
-						<a class="red" href="<?=base_url();?>admin/deleteDataDepartemen/<?=$r['id_departemen'] ?>">
+						<a class="red" href="#">
 							<i class="ace-icon fa fa-trash-o bigger-130"></i>
 						</a>
 					</div></center>
